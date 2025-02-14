@@ -6,6 +6,7 @@ app.use(express.json());
 
 const SUPERVISOR_URL = "http://supervisor";
 const SUPERVISOR_TOKEN = process.env.SUPERVISOR_TOKEN;
+console.log(`SUPERVISOR_TOKEN = `, SUPERVISOR_TOKEN);
 
 const headers = {
   Authorization: `Bearer ${SUPERVISOR_TOKEN}`,
@@ -15,6 +16,7 @@ const headers = {
 // 重启 Home Assistant
 app.post('/restart', async (req, res) => {
   try {
+    console.log('app restart');
     const response = await axios.post(`${SUPERVISOR_URL}/core/restart`, {}, { headers });
     res.json({ result: "success", data: response.data });
   } catch (error) {
@@ -25,6 +27,7 @@ app.post('/restart', async (req, res) => {
 // 关闭 Home Assistant
 app.post('/shutdown', async (req, res) => {
   try {
+    console.log('app shutdown');
     const response = await axios.post(`${SUPERVISOR_URL}/core/shutdown`, {}, { headers });
     res.json({ result: "success", data: response.data });
   } catch (error) {
