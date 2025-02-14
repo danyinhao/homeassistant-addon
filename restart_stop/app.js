@@ -27,7 +27,7 @@ app.post('/restart', async (req, res) => {
 // 关闭 Home Assistant
 app.post('/shutdown', async (req, res) => {
   try {
-    console.log('app shutdown');
+    console.log('app stop');
     const response = await axios.post(`${SUPERVISOR_URL}/core/shutdown`, {}, { headers });
     res.json({ result: "success", data: response.data });
   } catch (error) {
