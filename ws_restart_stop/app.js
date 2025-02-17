@@ -46,7 +46,7 @@ ws.on('open', () => {
 
 // 监听 WebSocket 消息事件
 ws.on('message', (data) => {
-  console.log(`message =>`, message);
+  console.log(`message =>`, data);
   const message = JSON.parse(data);
   if (message.type === 'event') {
     const event = message.event;
