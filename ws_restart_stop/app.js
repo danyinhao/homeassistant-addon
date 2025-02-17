@@ -8,7 +8,7 @@ console.log(`wsUrl = `, wsUrl);
 console.log(`haToken = `, haToken);
 
 // 创建 WebSocket 连接
-const ws = new WebSocket(wsUrl, {
+const ws = new WebSocket(wsUrl, ['hassio'], {
   headers: {
     Authorization: `Bearer ${haToken}`,
   },
