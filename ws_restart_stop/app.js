@@ -2,7 +2,7 @@ const WebSocket = require('ws');
 
 // Home Assistant 配置
 const wsUrl = process.env.SUPERVISOR_WS_URL || 'ws://supervisor/core/websocket';
-const haToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIyNmM3NjI5Yjc5N2Y0MDFkYmE0YjY0ODY0N2VmMjE4NCIsImlhdCI6MTczOTc2MTkxOSwiZXhwIjoyMDU1MTIxOTE5fQ.F8kk-6enMOLkL0n22k0pD1sLGG5I-266Mf-32uR54J8" || process.env.SUPERVISOR_TOKEN;
+const haToken = process.env.SUPERVISOR_TOKEN;
 
 console.log(`wsUrl = `, wsUrl);
 console.log(`haToken = `, haToken);

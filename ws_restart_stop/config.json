@@ -1,6 +1,6 @@
 {
     "name": "HA WebSocket Listener",
-    "version": "2.2.0",
+    "version": "2.3.0",
     "slug": "ha_websocket_listener",
     "description": "Listen to Home Assistant events via WebSocket",
     "arch": ["amd64", "armv7", "aarch64"],
@@ -10,5 +10,7 @@
     "schema": {},
     "environment": {
       "SUPERVISOR_WS_URL": "ws://supervisor/core/websocket"
-    }
+    },
+    "hassio_api": true,
+    "hassio_role": "manager"
 }
