@@ -18,7 +18,7 @@ ws.on('open', () => {
   ws.send(
     JSON.stringify({
       type: 'auth',
-      auth: `Bearer ${haToken}`,
+      access_token: `${haToken}`,
     })
   );
 
