@@ -28,16 +28,22 @@ app.post('/restart', async (req, res) => {
 app.post('/shutdown', async (req, res) => {
   try {
     console.log('app stop');
-    const response = await axios.post(`${SUPERVISOR_URL}/core/shutdown`, {}, { headers });
+    const response = await axios.post(`${SUPERVISOR_URL}/core/stop`, {}, { headers });
     res.json({ result: "success", data: response.data });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-// 健康检查
-app.get('/health', (req, res) => {
-  res.json({ status: 'ok' });
+// 重启 Home Assistant
+app.get('/ws', async (req, res) => {
+  try {
+    console.log('app connect ws');
+    const response = await axios.get(`${SUPERVISOR_URL}/core/websokcet`, {}, { headers });
+    res.json({ result: "success", data: response.data });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 const PORT = 5000;
