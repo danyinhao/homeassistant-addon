@@ -16,9 +16,9 @@ const getToken = async () => {
               },
         });
 
-        console.log(`getToken response`, response.message);
+        console.log(`getToken response`, response.data);
     } catch (error) {
-        console.log(`getToken error`, error);
+        console.log(`getToken error`, error.message);
     }
 };
 
@@ -66,6 +66,6 @@ const createAutomation = async () => {
 
 // 启动时创建自动化
 (async ()=> {
-    await getToken();
+    // await getToken();
     await createAutomation();
 })();
