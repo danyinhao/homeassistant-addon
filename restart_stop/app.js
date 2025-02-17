@@ -42,6 +42,7 @@ app.get('/ws', async (req, res) => {
     const response = await axios.get(`${SUPERVISOR_URL}/core/websocket`, {}, { headers });
     res.json({ result: "success", data: response.data });
   } catch (error) {
+    console.log(`ws error`, JSON.stringify(error));
     res.status(500).json({ error: error.message });
   }
 });
