@@ -1,0 +1,15 @@
+{
+    "name": "HA Automation Manager",
+    "version": "1.0.0",
+    "slug": "ha_automation_manager",
+    "description": "Manage Home Assistant automations",
+    "arch": ["amd64", "armv7", "aarch64"],
+    "startup": "application",
+    "boot": "auto",
+    "options": {},
+    "schema": {},
+    "hass_role": "manager",
+    "hassio_api": true,
+    "hassio_role": "manager",
+    "url": "https://github.com/danyinhao/homeassistant-addon/tree/main/auto_config"
+}
