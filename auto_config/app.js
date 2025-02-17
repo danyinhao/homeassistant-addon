@@ -4,6 +4,8 @@ const axios = require('axios');
 const haUrl = process.env.SUPERVISOR_URL || 'http://supervisor/core';
 const haToken = process.env.SUPERVISOR_TOKEN;
 
+console.log(`hatoken = `, haToken);
+
 // 创建自动化
 const createAutomation = async () => {
   try {
@@ -12,16 +14,22 @@ const createAutomation = async () => {
       {
         "id": "auto_restart_ha",
         "alias": "",
-        "trigger": [ // 触发器是硬件示例发布restart状态
+        "trigger": [
             {
-                "service": "homeassistant",
+                "platform": "homeassistant",
                 "event": "shutdown"
             }
         ],
         "condition": [],
         "action": [
             {
-                "service": "homeassistant.restart" // 调用HA的重启服务
+                "service": "mqtt.publish",
+                "data": {
+                  "topic": "ihost/hardware/light/",
+                  "payload": "off",
+                  "qos": 0,
+                  "retain": true
+                }
             }
         ]
         },
