@@ -1,15 +1,14 @@
 {
-    "name": "Supervisor Controller WS",
-    "version": "1.1.0",
-    "slug": "supervisor_ctrl",
-    "description": "Control HA via Supervisor API",
-    "arch": ["aarch64", "amd64", "armhf", "armv7", "i386"],
-    "url": "https://github.com/danyinhao/homeassistant-addon/tree/main/ws_restart_stop",
+    "name": "HA WebSocket Listener",
+    "version": "1.0",
+    "slug": "ha_websocket_listener",
+    "description": "Listen to Home Assistant events via WebSocket",
+    "arch": ["amd64", "armv7", "aarch64"],
     "startup": "application",
     "boot": "auto",
-    "map": ["config:rw"],
     "options": {},
     "schema": {},
-    "hassio_api": true,
-    "hassio_role": "manager"
+    "environment": {
+      "SUPERVISOR_WS_URL": "ws://supervisor/core/websocket"
+    }
 }
