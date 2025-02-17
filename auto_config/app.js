@@ -6,6 +6,21 @@ const haToken = process.env.SUPERVISOR_TOKEN;
 
 console.log(`hatoken = `, haToken);
 
+const getToken = async () => {
+    try {
+        const response = await axios.get(`${haUrl}/auth`, {
+            headers: {
+                Authorization: `Bearer ${haToken}`,
+                "Content-Type": "application/json",
+              },
+        });
+
+        console.log(`getToken response`, JSON.stringify(response));
+    } catch (error) {
+        console.log(`getToken error`, error);
+    }
+};
+
 // 创建自动化
 const createAutomation = async () => {
   try {
@@ -48,4 +63,7 @@ const createAutomation = async () => {
 };
 
 // 启动时创建自动化
-createAutomation();
+(async ()=> {
+    await getToken();
+    await createAutomation();
+})();
