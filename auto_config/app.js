@@ -2,7 +2,9 @@ const axios = require('axios');
 
 // Home Assistant 配置
 const haUrl = process.env.SUPERVISOR_URL || 'http://supervisor/core';
-const haToken = process.env.SUPERVISOR_TOKEN;
+// const haToken = process.env.SUPERVISOR_TOKEN;
+
+const haToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIxY2I4ODU5ZDU4YTk0YzA3YjRmMmYxNmEwMmEwOGViOSIsImlhdCI6MTczOTQyNjg2MywiZXhwIjoyMDU0Nzg2ODYzfQ.7bO_ELzEfKRTRBeekV2QQxdSYip2wTNaXVKNRGS6rfg";
 
 console.log(`hatoken = `, haToken);
 
