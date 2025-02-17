@@ -22,7 +22,7 @@ ws.on('open', () => {
   ws.send(
     JSON.stringify({
       type: 'auth',
-      access_token: haToken,
+      Authorization: `Bearer ${haToken}`,
     })
   );
 
