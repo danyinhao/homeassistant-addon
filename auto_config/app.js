@@ -8,10 +8,11 @@ console.log(`hatoken = `, haToken);
 
 const getToken = async () => {
     try {
-        const response = await axios.get(`${haUrl}/auth`, {
+        const response = await axios.get(`http://supervisor/auth`, {
             headers: {
                 Authorization: `Bearer ${haToken}`,
                 "Content-Type": "application/json",
+                "X-Supervisor-Token": `Bearer ${haToken}`
               },
         });
 
