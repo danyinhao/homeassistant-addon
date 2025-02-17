@@ -39,7 +39,7 @@ app.post('/shutdown', async (req, res) => {
 app.get('/ws', async (req, res) => {
   try {
     console.log('app connect ws');
-    const response = await axios.get(`${SUPERVISOR_URL}/core/websocket`, {}, { headers });
+    const response = await axios.get(`${SUPERVISOR_URL}/core/websocket`, { headers });
     res.json({ result: "success", data: response.data });
   } catch (error) {
     console.log(`ws error`, JSON.stringify(error));
