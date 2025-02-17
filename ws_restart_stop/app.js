@@ -8,11 +8,7 @@ console.log(`wsUrl = `, wsUrl);
 console.log(`haToken = `, haToken);
 
 // 创建 WebSocket 连接
-const ws = new WebSocket(wsUrl, {
-  headers: {
-    access_token: `Bearer ${haToken}`,
-  },
-});
+const ws = new WebSocket(wsUrl);
 
 // 监听 WebSocket 连接打开事件
 ws.on('open', () => {
@@ -22,7 +18,7 @@ ws.on('open', () => {
   ws.send(
     JSON.stringify({
       type: 'auth',
-      access_token: `Bearer ${haToken}`,
+      auth: `Bearer ${haToken}`,
     })
   );
 
