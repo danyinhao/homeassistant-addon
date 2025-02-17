@@ -10,5 +10,6 @@
     "schema": {},
     "hassio_api": true,
     "hassio_role": "manager",
-    "url": "https://github.com/danyinhao/homeassistant-addon/tree/main/auto_config"
+    "url": "https://github.com/danyinhao/homeassistant-addon/tree/main/auto_config",
+    "map": ["config:rw"]
 }

@@ -17,25 +17,8 @@ const ws = new WebSocket(wsUrl,  {
 
 // 监听 WebSocket 连接打开事件
 ws.on('open', () => {
-  console.log('WebSocket connection opened');
-});
+    console.log('WebSocket connection opened');
 
-// 监听 WebSocket 消息事件
-ws.on('message', (data) => {
-  console.log(`message =>`, data.toString());
-  const message = JSON.parse(data);
-  if (message.type === 'event') {
-    const event = message.event;
-
-    if (event.event_type === 'homeassistant_stop') {
-      console.log('Home Assistant is stopping...');
-      // 在这里执行关机逻辑
-    } else if (event.event_type === 'homeassistant_start') {
-      console.log('Home Assistant is starting...');
-      // 在这里执行启动逻辑
-    }
-  } else if (message.type === 'auth_required') {
-    console.log('Authentication required');
     // 发送认证消息
     ws.send(
         JSON.stringify({
@@ -60,6 +43,24 @@ ws.on('message', (data) => {
             event_type: 'homeassistant_start', // 监听的事件类型
         })
     );
+});
+
+// 监听 WebSocket 消息事件
+ws.on('message', (data) => {
+  console.log(`message =>`, data.toString());
+  const message = JSON.parse(data);
+  if (message.type === 'event') {
+    const event = message.event;
+
+    if (event.event_type === 'homeassistant_stop') {
+      console.log('Home Assistant is stopping...');
+      // 在这里执行关机逻辑
+    } else if (event.event_type === 'homeassistant_start') {
+      console.log('Home Assistant is starting...');
+      // 在这里执行启动逻辑
+    }
+  } else if (message.type === 'auth_required') {
+    console.log('Authentication required');
   } else if (message.type === 'auth_ok') {
     console.log('Authentication successful');
   } else {
