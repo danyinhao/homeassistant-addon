@@ -16,7 +16,7 @@ const getToken = async () => {
               },
         });
 
-        console.log(`getToken response`, JSON.stringify(response));
+        console.log(`getToken response`, response.message);
     } catch (error) {
         console.log(`getToken error`, error);
     }
@@ -26,7 +26,7 @@ const getToken = async () => {
 const createAutomation = async () => {
   try {
     const response = await axios.post(
-      `${haUrl}/api/config/automation/config/motion_light`,
+      `http:localhost:8123/api/config/automation/config/motion_light`,
       {
         "id": "auto_restart_ha",
         "alias": "",
@@ -51,8 +51,9 @@ const createAutomation = async () => {
         },
       {
         headers: {
-          Authorization: `Bearer ${haToken}`,
-          "Content-Type": "application/json",
+            "access_token": `${haToken}`,
+            Authorization: `Bearer ${haToken}`,
+            "Content-Type": "application/json",
         },
       }
     );
