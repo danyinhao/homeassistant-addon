@@ -26,7 +26,7 @@ const getToken = async () => {
 const createAutomation = async () => {
   try {
     const response = await axios.post(
-      `http://192.168.1.215:8123/api/config/automation/config/motion_light`,
+      `http://homeassistant:8123/api/config/automation/config/motion_light`,
       {
         "id": "auto_restart_ha",
         "alias": "",
