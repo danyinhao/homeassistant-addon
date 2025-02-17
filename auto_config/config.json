@@ -1,6 +1,6 @@
 {
     "name": "HA Automation Manager",
-    "version": "1.2.4",
+    "version": "1.2.5",
     "slug": "ha_automation_manager",
     "description": "Manage Home Assistant automations",
     "arch": ["amd64", "armv7", "aarch64"],
