@@ -51,7 +51,7 @@ const createAutomation = async () => {
         },
       {
         headers: {
-            "access_token": `${haToken}`,
+            // "access_token": `${haToken}`,
             Authorization: `Bearer ${haToken}`,
             "Content-Type": "application/json",
         },
