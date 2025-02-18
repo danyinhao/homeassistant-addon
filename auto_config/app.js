@@ -10,36 +10,36 @@ console.log(`hatoken = `, haToken);
 const createAutomation = async () => {
   try {
     const response = await axios.post(
-      `${haUrl}/api/config/automation/config/auto_restart_ha`,
-      {
-        "id": "auto_restart_ha",
-        "alias": "",
-        "trigger": [
-            {
-                "platform": "homeassistant",
-                "event": "stop"
-            }
-        ],
-        "condition": [],
-        "action": [
-            {
-                "service": "mqtt.publish",
-                "data": {
-                  "topic": "ihost/hardware/light/",
-                  "payload": "off",
-                  "qos": 0,
-                  "retain": true
+        `${haUrl}/api/config/automation/config/auto_restart_ha`,
+        {
+            "id": "auto_restart_ha",
+            "alias": "",
+            "trigger": [
+                {
+                    "platform": "homeassistant",
+                    "event": "shutdown"
                 }
-            }
-        ]
+            ],
+            "condition": [],
+            "action": [
+                {
+                    "service": "mqtt.publish",
+                    "data": {
+                        "topic": "ihost/hardware/light/",
+                        "payload": "off",
+                        "qos": 0,
+                        "retain": true
+                    }
+                }
+            ]
         },
-      {
-        headers: {
-            "access_token": `${haToken}`,
-            Authorization: `Bearer ${haToken}`,
-            "Content-Type": "application/json",
-        },
-      }
+        {
+            headers: {
+                "access_token": `${haToken}`,
+                Authorization: `Bearer ${haToken}`,
+                "Content-Type": "application/json",
+            },
+        }
     );
 
     console.log("Automation created:", response.data);
