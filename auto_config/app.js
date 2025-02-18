@@ -20,7 +20,7 @@ const getAutomation = async () => {
           }
       );
   
-      if (response.data) flag = true;
+      if (response.data?.id === "auto_restart_ha") flag = true;
       console.log("Automation get:", JSON.stringify(response.data));
     } catch (error) {
       console.error("Failed to get automation:", error.response ? error.response.data : error.message);
