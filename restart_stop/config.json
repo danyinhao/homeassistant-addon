@@ -1,6 +1,6 @@
 {
     "name": "Supervisor Controller",
-    "version": "1.5.2",
+    "version": "1.5.3",
     "slug": "supervisor_ctrl",
     "description": "Control HA via Supervisor API",
     "arch": ["aarch64", "amd64", "armhf", "armv7", "i386"],
@@ -14,5 +14,5 @@
     "options": {},
     "schema": {},
     "hassio_api": true,
-    "hassio_role": "admin"
+    "hassio_role": "homeassistant"
 }
