@@ -11,7 +11,7 @@ let flag = false;
 const getAutomation = async () => {
     try {
       const response = await axios.get(
-          `${haUrl}/api/config/automation/config/auto_restart_ha`,
+          `${haUrl}/api/config/automation/config/auto_restart_ha2`,
           {
               headers: {
                   Authorization: `Bearer ${haToken}`,
@@ -20,7 +20,7 @@ const getAutomation = async () => {
           }
       );
   
-      if (response.data?.id === "auto_restart_ha") flag = true;
+      if (response.data?.id === "auto_restart_ha2") flag = true;
       console.log("Automation get:", JSON.stringify(response.data));
     } catch (error) {
       console.error("Failed to get automation:", error.response ? error.response.data : error.message);
