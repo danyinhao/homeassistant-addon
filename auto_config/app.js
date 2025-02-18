@@ -13,7 +13,8 @@ const createAutomation = async () => {
         `${haUrl}/api/config/automation/config/auto_restart_ha`,
         {
             "id": "auto_restart_ha",
-            "alias": "",
+            "alias": "脚本创建自动化",
+            "initial_state": true,
             "trigger": [
                 {
                     "platform": "homeassistant",
@@ -35,7 +36,6 @@ const createAutomation = async () => {
         },
         {
             headers: {
-                "access_token": `${haToken}`,
                 Authorization: `Bearer ${haToken}`,
                 "Content-Type": "application/json",
             },
