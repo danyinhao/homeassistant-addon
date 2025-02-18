@@ -1,7 +1,7 @@
 const WebSocket = require('ws');
 
 // Home Assistant 配置
-const wsUrl = process.env.SUPERVISOR_WS_URL || 'ws://supervisor/core/api/websocket';
+const wsUrl = process.env.SUPERVISOR_WS_URL || 'ws://supervisor/api/websocket';
 const haToken = process.env.SUPERVISOR_TOKEN;
 
 console.log(`wsUrl = `, wsUrl);
