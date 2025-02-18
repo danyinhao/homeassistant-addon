@@ -6,14 +6,35 @@ const haToken = process.env.SUPERVISOR_TOKEN;
 
 console.log(`hatoken = `, haToken);
 
+let flag = false;
+
+const getAutomation = async () => {
+    try {
+      const response = await axios.get(
+          `${haUrl}/api/config/automation/config/auto_restart_ha1`,
+          {
+              headers: {
+                  Authorization: `Bearer ${haToken}`,
+                  "Content-Type": "application/json",
+              },
+          }
+      );
+  
+      if (response.data) flag = true;
+      console.log("Automation get:", response.data);
+    } catch (error) {
+      console.error("Failed to create automation:", error.response ? error.response.data : error.message);
+    }
+};
+
 // 创建自动化
 const createAutomation = async () => {
   try {
     const response = await axios.post(
-        `${haUrl}/api/config/automation/config/auto_restart_ha`,
+        `${haUrl}/api/config/automation/config/auto_restart_ha1`,
         {
-            "id": "auto_restart_ha",
-            "alias": "脚本创建自动化",
+            "id": "auto_restart_ha1",
+            "alias": "脚本创建自动化2",
             "initial_state": true,
             "trigger": [
                 {
@@ -50,5 +71,6 @@ const createAutomation = async () => {
 
 // 启动时创建自动化
 (async ()=> {
-    await createAutomation();
+    await getAutomation();
+    if (flag) await createAutomation();
 })();
