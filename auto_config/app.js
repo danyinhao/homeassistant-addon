@@ -11,7 +11,7 @@ let flag = false;
 const getAutomation = async () => {
     try {
       const response = await axios.get(
-          `${haUrl}/api/config/automation/config/auto_restart_ha1`,
+          `${haUrl}/api/config/automation/config/auto_restart_ha`,
           {
               headers: {
                   Authorization: `Bearer ${haToken}`,
@@ -21,9 +21,9 @@ const getAutomation = async () => {
       );
   
       if (response.data) flag = true;
-      console.log("Automation get:", response.data);
+      console.log("Automation get:", JSON.stringify(response.data));
     } catch (error) {
-      console.error("Failed to create automation:", error.response ? error.response.data : error.message);
+      console.error("Failed to get automation:", error.response ? error.response.data : error.message);
     }
 };
 
@@ -72,5 +72,5 @@ const createAutomation = async () => {
 // 启动时创建自动化
 (async ()=> {
     await getAutomation();
-    if (flag) await createAutomation();
+    if (!flag) await createAutomation();
 })();
