@@ -14,5 +14,5 @@
     "options": {},
     "schema": {},
     "hassio_api": true,
-    "hassio_role": "homeassistant"
+    "hassio_role": "default"
 }

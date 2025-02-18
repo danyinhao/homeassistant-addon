@@ -61,7 +61,7 @@ ws.on('message', (data) => {
             event_type: 'homeassistant_start', // 监听的事件类型
         })
     );
-    
+
   } else {
     console.log('Received message:', message);
   }
