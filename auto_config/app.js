@@ -6,34 +6,18 @@ const haToken = process.env.SUPERVISOR_TOKEN;
 
 console.log(`hatoken = `, haToken);
 
-const getToken = async () => {
-    try {
-        const response = await axios.get(`http://supervisor/auth`, {
-            headers: {
-                Authorization: `Bearer ${haToken}`,
-                "Content-Type": "application/json",
-                "X-Supervisor-Token": `Bearer ${haToken}`
-              },
-        });
-
-        console.log(`getToken response`, response.data);
-    } catch (error) {
-        console.log(`getToken error`, error.message);
-    }
-};
-
 // 创建自动化
 const createAutomation = async () => {
   try {
     const response = await axios.post(
-      `http://homeassistant:8123/api/config/automation/config/motion_light`,
+      `${haUrl}/api/config/automation/config/auto_restart_ha`,
       {
         "id": "auto_restart_ha",
         "alias": "",
         "trigger": [
             {
                 "platform": "homeassistant",
-                "event": "shutdown"
+                "event": "stop"
             }
         ],
         "condition": [],
@@ -51,7 +35,7 @@ const createAutomation = async () => {
         },
       {
         headers: {
-            // "access_token": `${haToken}`,
+            "access_token": `${haToken}`,
             Authorization: `Bearer ${haToken}`,
             "Content-Type": "application/json",
         },
@@ -66,6 +50,5 @@ const createAutomation = async () => {
 
 // 启动时创建自动化
 (async ()=> {
-    // await getToken();
     await createAutomation();
 })();
