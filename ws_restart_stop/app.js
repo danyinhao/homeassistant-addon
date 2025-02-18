@@ -18,31 +18,6 @@ const ws = new WebSocket(wsUrl,  {
 // 监听 WebSocket 连接打开事件
 ws.on('open', () => {
     console.log('WebSocket connection opened');
-
-    // 发送认证消息
-    ws.send(
-        JSON.stringify({
-            type: 'auth',
-            access_token: haToken,
-        })
-    );
-
-    // 订阅事件
-    ws.send(
-        JSON.stringify({
-            id: 1, // 请求 ID
-            type: 'subscribe_events',
-            event_type: 'homeassistant_stop', // 监听的事件类型
-        })
-    );
-
-    ws.send(
-        JSON.stringify({
-            id: 2, // 请求 ID
-            type: 'subscribe_events',
-            event_type: 'homeassistant_start', // 监听的事件类型
-        })
-    );
 });
 
 // 监听 WebSocket 消息事件
@@ -61,8 +36,32 @@ ws.on('message', (data) => {
     }
   } else if (message.type === 'auth_required') {
     console.log('Authentication required');
+    // 发送认证消息
+    ws.send(
+        JSON.stringify({
+            type: 'auth',
+            access_token: haToken,
+        })
+    );
   } else if (message.type === 'auth_ok') {
     console.log('Authentication successful');
+    // 订阅事件
+    ws.send(
+        JSON.stringify({
+            id: 1, // 请求 ID
+            type: 'subscribe_events',
+            event_type: 'homeassistant_stop', // 监听的事件类型
+        })
+    );
+
+    ws.send(
+        JSON.stringify({
+            id: 2, // 请求 ID
+            type: 'subscribe_events',
+            event_type: 'homeassistant_start', // 监听的事件类型
+        })
+    );
+    
   } else {
     console.log('Received message:', message);
   }
