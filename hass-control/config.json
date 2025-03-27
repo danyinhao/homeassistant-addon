@@ -1,11 +1,8 @@
 {
     "name": "hass-test",
     "version": "1.0.0",
-    "slug": "zigbee2mqtt",
+    "slug": "hass_test",
     "description": "hass test",
-    "breaking_versions": [
-        "2.0.0-1"
-    ],
     "uart": true,
     "udev": true,
     "url": "https://github.com/danyinhao/homeassistant-addon/tree/main/hass-test",
