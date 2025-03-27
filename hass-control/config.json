@@ -5,7 +5,7 @@
     "description": "hass test",
     "uart": true,
     "udev": true,
-    "url": "https://github.com/danyinhao/homeassistant-addon/tree/main/hass-test",
+    "url": "https://github.com/danyinhao/homeassistant-addon/tree/main/hass-control",
     "startup": "application",
     "services": [
         "mqtt:need"
