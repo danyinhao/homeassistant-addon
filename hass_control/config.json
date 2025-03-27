@@ -1,0 +1,56 @@
+{
+    "name": "zetao hass test",
+    "version": "1.0.0",
+    "slug": "zetao_hass_test",
+    "description": "hass test",
+    "uart": true,
+    "udev": true,
+    "url": "https://github.com/danyinhao/homeassistant-addon/tree/main/hass_control",
+    "startup": "application",
+    "services": [
+        "mqtt:need"
+    ],
+    "boot": "auto",
+    "timeout": 30,
+    "map": [
+        {
+            "type": "share",
+            "read_only": false
+        },
+        {
+            "type": "homeassistant_config",
+            "read_only": false,
+            "path": "/config"
+        },
+        {
+            "type": "addon_config",
+            "read_only": false,
+            "path": "/addon_config"
+        }
+    ],
+    "options": {
+        "data_path": "/config/hass-test",
+        "mqtt": {
+            "url": "mqtt://homeassistant.local:1883",
+            "username": "",
+            "password": ""
+        }
+    },
+    "environment": {
+        "mqttUrl": "{{ options.mqtt.url }}",
+        "mqttUsername": "{{ options.mqtt.username }}",
+        "mqttPassword": "{{ options.mqtt.password }}"
+    },
+    "schema": {
+        "data_path": "str",
+        "mqtt": {
+            "url": "str?",
+            "username": "str?",
+            "password": "str?"
+        }
+    },
+    "image": "ghcr.io/danyinhao/hass-test",
+    "devices": [
+        "/dev/ttyS3"
+    ]
+}
