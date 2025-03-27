@@ -12,6 +12,8 @@
         "armv7"
     ],
     "map": [
+        "data:rw",
+        "config:rw",
         {
             "type": "share",
             "read_only": false
