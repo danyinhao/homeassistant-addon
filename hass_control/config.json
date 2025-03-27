@@ -8,6 +8,13 @@
     "url": "https://github.com/danyinhao/homeassistant-addon/tree/main/hass_control",
     "startup": "application",
     "boot": "auto",
+    "arch": [
+        "aarch64",
+        "amd64",
+        "armhf",
+        "armv7",
+        "i386"
+    ],
     "map": [
         "config:rw"
     ],
