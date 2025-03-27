@@ -5,29 +5,11 @@
     "description": "hass test",
     "uart": true,
     "udev": true,
-    "url": "https://github.com/danyinhao/homeassistant-addon/tree/main/restart_stop",
+    "url": "https://github.com/danyinhao/homeassistant-addon/tree/main/hass_control",
     "startup": "application",
-    "services": [
-        "mqtt:need"
-    ],
     "boot": "auto",
-    "timeout": 30,
     "map": [
-        "config:rw",
-        {
-            "type": "share",
-            "read_only": false
-        },
-        {
-            "type": "homeassistant_config",
-            "read_only": false,
-            "path": "/config"
-        },
-        {
-            "type": "addon_config",
-            "read_only": false,
-            "path": "/addon_config"
-        }
+        "config:rw"
     ],
     "options": {
         "data_path": "/config/hass-test",
