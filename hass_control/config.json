@@ -16,7 +16,20 @@
         "i386"
     ],
     "map": [
-        "config:rw"
+        {
+            "type": "share",
+            "read_only": false
+        },
+        {
+            "type": "homeassistant_config",
+            "read_only": false,
+            "path": "/config"
+        },
+        {
+            "type": "addon_config",
+            "read_only": false,
+            "path": "/addon_config"
+        }
     ],
     "options": {
         "data_path": "/config/hass-test",
