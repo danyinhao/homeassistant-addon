@@ -9,11 +9,7 @@
     "startup": "application",
     "boot": "auto",
     "arch": [
-        "aarch64",
-        "amd64",
-        "armhf",
-        "armv7",
-        "i386"
+        "armv7"
     ],
     "map": [
         {
@@ -40,9 +36,9 @@
         }
     },
     "environment": {
-        "mqttUrl": "{{ options.mqtt.url }}",
-        "mqttUsername": "{{ options.mqtt.username }}",
-        "mqttPassword": "{{ options.mqtt.password }}"
+        "mqtt_url": "{{ options.mqtt.url }}",
+        "mqtt_username": "{{ options.mqtt.username }}",
+        "mqtt_password": "{{ options.mqtt.password }}"
     },
     "schema": {
         "data_path": "str",
