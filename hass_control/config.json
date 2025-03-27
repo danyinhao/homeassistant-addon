@@ -1,6 +1,6 @@
 {
     "name": "zetao hass test",
-    "version": "2.0.0",
+    "version": "1.0.0",
     "slug": "zetao_hass_test",
     "description": "hass test",
     "uart": true,
@@ -52,7 +52,7 @@
             "password": "str?"
         }
     },
-    "image": "ghcr.io/danyinhao/hass-test",
+    "image": "ghcr.io/danyinhao/hass-test-{arch}",
     "devices": [
         "/dev/ttyS3"
     ]
