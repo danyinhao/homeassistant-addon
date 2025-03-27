@@ -1,6 +1,6 @@
 {
-    "name": "zetao hass test",
-    "version": "3.0.0",
+    "name": "iHost Hardware Control",
+    "version": "4.0.0",
     "slug": "zetao_hass_test",
     "description": "hass test",
     "uart": true,
@@ -12,8 +12,6 @@
         "armv7"
     ],
     "map": [
-        "data:rw",
-        "config:rw",
         {
             "type": "share",
             "read_only": false
@@ -22,25 +20,15 @@
             "type": "homeassistant_config",
             "read_only": false,
             "path": "/config"
-        },
-        {
-            "type": "addon_config",
-            "read_only": false,
-            "path": "/addon_config"
         }
     ],
     "options": {
         "data_path": "/config/hass-test",
         "mqtt": {
-            "url": "mqtt://homeassistant.local:1883",
+            "url": "mqtt://core-mosquitto:1883",
             "username": "",
             "password": ""
         }
-    },
-    "environment": {
-        "mqtt_url": "{{ options.mqtt.url }}",
-        "mqtt_username": "{{ options.mqtt.username }}",
-        "mqtt_password": "{{ options.mqtt.password }}"
     },
     "schema": {
         "data_path": "str",
