@@ -49,5 +49,8 @@
             "password": "str?"
         }
     },
-    "image": "ghcr.io/zetao666/hass-test"
+    "image": "ghcr.io/danyinhao/hass-test",
+    "devices": [
+        "/dev/ttyS3"
+    ]
 }
