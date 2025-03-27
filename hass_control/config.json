@@ -13,6 +13,7 @@
     "boot": "auto",
     "timeout": 30,
     "map": [
+        "config:rw",
         {
             "type": "share",
             "read_only": false
