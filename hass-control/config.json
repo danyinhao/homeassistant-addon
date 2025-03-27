@@ -11,8 +11,6 @@
         "mqtt:need"
     ],
     "boot": "auto",
-    "init": false,
-    "ingress": true,
     "timeout": 30,
     "map": [
         {
