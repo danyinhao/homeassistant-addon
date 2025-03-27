@@ -1,0 +1,58 @@
+{
+    "name": "hass-test",
+    "version": "1.0.0",
+    "slug": "zigbee2mqtt",
+    "description": "hass test",
+    "breaking_versions": [
+        "2.0.0-1"
+    ],
+    "uart": true,
+    "udev": true,
+    "url": "https://github.com/danyinhao/homeassistant-addon/tree/main/hass-test",
+    "startup": "application",
+    "services": [
+        "mqtt:need"
+    ],
+    "boot": "auto",
+    "init": false,
+    "ingress": true,
+    "timeout": 30,
+    "map": [
+        {
+            "type": "share",
+            "read_only": false
+        },
+        {
+            "type": "homeassistant_config",
+            "read_only": false,
+            "path": "/config"
+        },
+        {
+            "type": "addon_config",
+            "read_only": false,
+            "path": "/addon_config"
+        }
+    ],
+    "options": {
+        "data_path": "/config/hass-test",
+        "mqtt": {
+            "url": "mqtt://homeassistant.local:1883",
+            "username": "",
+            "password": ""
+        }
+    },
+    "environment": {
+        "mqttUrl": "{{ options.mqtt.url }}",
+        "mqttUsername": "{{ options.mqtt.username }}",
+        "mqttPassword": "{{ options.mqtt.password }}"
+    },
+    "schema": {
+        "data_path": "str",
+        "mqtt": {
+            "url": "str?",
+            "username": "str?",
+            "password": "str?"
+        }
+    },
+    "image": "ghcr.io/zetao666/hass-test"
+}
