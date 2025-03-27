@@ -1,7 +1,7 @@
 {
-    "name": "hass test",
-    "version": "latest",
-    "slug": "hass_test",
+    "name": "zetao hass test",
+    "version": "1.0.0",
+    "slug": "zetao_hass_test",
     "description": "hass test",
     "uart": true,
     "udev": true,
