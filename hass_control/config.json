@@ -50,7 +50,6 @@
             "password": "str?"
         }
     },
-    "image": "ghcr.io/danyinhao/hass-test",
     "devices": [
         "/dev/ttyS3"
     ]
