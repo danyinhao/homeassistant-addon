@@ -1,6 +1,6 @@
 {
-    "name": "hass-test",
-    "version": "1.0.0",
+    "name": "hass test",
+    "version": "latest",
     "slug": "hass_test",
     "description": "hass test",
     "uart": true,
