@@ -1,7 +1,7 @@
 {
     "name": "iHost Hardware Control",
-    "version": "7.0.0",
-    "slug": "zetao_hass_test",
+    "version": "8.0.0",
+    "slug": "danyinhao_hass_test",
     "description": "hass test",
     "uart": true,
     "udev": true,
