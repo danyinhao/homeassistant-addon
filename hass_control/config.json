@@ -25,6 +25,16 @@
             "path": "/config"
         }
     ],
+    "translations": [
+        {
+            "language": "en",
+            "url": "/local/translations/en.yaml"
+        },
+        {
+            "language": "zh",
+            "url": "/local/translations/zh.yaml"
+        }
+    ],
     "options": {
         "data_path": "/config/hass-test",
         "mqtt": {
