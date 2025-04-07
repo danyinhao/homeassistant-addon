@@ -7,4 +7,4 @@ MQTT_PASS=$(bashio::services mqtt "password")
 
 export MQTT_HOST MQTT_PORT MQTT_USER MQTT_PASS
 
-exec "$@"
+exec "$@"   
