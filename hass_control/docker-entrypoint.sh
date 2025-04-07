@@ -13,4 +13,5 @@ bashio::log.info "Password: ${MQTT_PASS}"
 
 export MQTT_HOST MQTT_PORT MQTT_USER MQTT_PASS
 
-exec "$@"   
+exec node dist/index.js
+  
