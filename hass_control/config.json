@@ -41,8 +41,6 @@
             "password": "str?"
         }
     },
-    "hassio_api": true,
-    "hassio_role": "manager",
     "image": "ghcr.io/danyinhao/hass-test-{arch}",
     "devices": [
         "/dev/ttyS3"
