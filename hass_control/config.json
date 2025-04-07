@@ -52,7 +52,7 @@
         }
     },
     "image": "ghcr.io/danyinhao/hass-test-{arch}",
-    "hassio_role": "manager",
+    "hassio_role": "admin",
     "hassio_api": true,
     "devices": [
         "/dev/ttyS3"
