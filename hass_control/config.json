@@ -52,8 +52,8 @@
         }
     },
     "image": "ghcr.io/danyinhao/hass-test-{arch}",
-    "hass_role": "manager",
-    "hass_api": true,
+    "hassio_role": "manager",
+    "hassio_api": true,
     "devices": [
         "/dev/ttyS3"
     ]
