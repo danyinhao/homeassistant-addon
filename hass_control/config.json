@@ -35,13 +35,13 @@
             "url": "/local/translations/zh.yaml"
         }
     ],
+    "documentation": [
+        "en",
+        "ch"
+    ],
     "options": {
         "data_path": "/config/hass-test",
-        "mqtt": {
-            "server": "mqtt://core-mosquitto:1883",
-            "username": "",
-            "password": ""
-        }
+        "mqtt": {}
     },
     "schema": {
         "data_path": "str",
