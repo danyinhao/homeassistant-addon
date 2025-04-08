@@ -1,6 +1,6 @@
 {
     "name": "iHost Hardware Control",
-    "version": "1.0.19",
+    "version": "1.0.20",
     "slug": "danyinhao_hass_test",
     "description": "hass test",
     "uart": true,
