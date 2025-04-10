@@ -1,6 +1,6 @@
 {
     "name": "iHost Hardware Control",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "slug": "danyinhao_hass_test",
     "description": "hass test",
     "uart": true,
@@ -24,20 +24,6 @@
             "read_only": false,
             "path": "/config"
         }
-    ],
-    "translations": [
-        {
-            "language": "en",
-            "url": "/local/translations/en.yaml"
-        },
-        {
-            "language": "zh",
-            "url": "/local/translations/zh.yaml"
-        }
-    ],
-    "documentation": [
-        "en",
-        "ch"
     ],
     "options": {
         "data_path": "/config/hass-test",
