@@ -50,7 +50,7 @@ ws.on('message', (data) => {
         JSON.stringify({
             id: 1, // 请求 ID
             type: 'subscribe_events',
-            event_type: '', // 监听的事件类型
+            event_type: 'shutdown', // 监听的事件类型
         })
     );
 
