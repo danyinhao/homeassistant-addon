@@ -59,11 +59,19 @@ ws.on('message', (data) => {
         })
     );
 
+    ws.send(
+      JSON.stringify({
+        id: id+1, // 请求 ID
+        type: 'subscribe_events',
+        event_type: 'EVENT_HOMEASSISTANT_STOP', // 监听的事件类型
+      })
+  );
+
     // ws.send(
     //     JSON.stringify({
-    //         id: 2, // 请求 ID
-    //         type: 'subscribe_events',
-    //         event_type: 'homeassistant_start', // 监听的事件类型
+            // id: 2, // 请求 ID
+            // type: 'subscribe_events',
+            // event_type: 'homeassistant_start', // 监听的事件类型
     //     })
     // );
 
