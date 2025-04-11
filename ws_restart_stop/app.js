@@ -45,12 +45,17 @@ ws.on('message', (data) => {
     );
   } else if (message.type === 'auth_ok') {
     console.log('Authentication successful');
+    const id = Math.floor(Math.random() * 900000) + 100000;
     // 订阅事件
     ws.send(
         JSON.stringify({
-            id: 1, // 请求 ID
-            type: 'subscribe_events',
-            event_type: 'shutdown', // 监听的事件类型
+            id, // 请求 ID
+            type: 'subscribe_trigger',
+            // event_type: 'shutdown', // 监听的事件类型
+            trigger: {
+              "platform": "homeassistant",
+              "event": "shutdown"
+            }
         })
     );
 
