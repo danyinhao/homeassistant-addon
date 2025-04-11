@@ -16,14 +16,14 @@ iHost Hardware Control add-on registers buttons and indicators on the iHost as e
 2. Enter the URL in the input box: [https://github.com/iHost-Open-Source- Project/hassio-ihost-addon](https://github.com/iHost-Open-Source-Project/hassio-ihost-addon); 
 3. Alternatively, click this button to add it automatically.
 
-![img](./images/install_button.png)
+![img](https://raw.githubusercontent.com/danyinhao/homeassistant-addon/test/hass_control/images/install_button.png)
 
 ##### Install **iHost Hardware Control**  Add-on
 
 1. Search for **iHost Hardware Control** in the Add-ons Store; 
 2. Click **Install**;
 
-![img](./images/install.png)
+![img](https://raw.githubusercontent.com/danyinhao/homeassistant-addon/test/hass_control/images/install.png)
 
 3. Wait for the installation to complete.
 
