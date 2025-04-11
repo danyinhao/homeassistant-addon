@@ -9,6 +9,7 @@ console.log(`haToken = `, haToken);
 
 // 创建 WebSocket 连接
 const ws = new WebSocket(wsUrl,  {
+    autoPong: true,
     headers: {
         Authorization: `Bearer ${haToken}`,
         "Content-Type": "application/json",
@@ -64,8 +65,11 @@ ws.on('message', (data) => {
         id: id+1, // 请求 ID
         type: 'subscribe_events',
         event_type: 'EVENT_HOMEASSISTANT_STOP', // 监听的事件类型
-      })
-  );
+      }));
+
+      setInterval(() =>{
+        ws.ping();
+      }, 5000);
 
     // ws.send(
     //     JSON.stringify({
