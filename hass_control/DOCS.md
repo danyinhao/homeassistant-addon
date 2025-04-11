@@ -33,9 +33,9 @@ Click the “start” button after the installation is complete and wait for the
 
 Since the iHost Hardware Control add-on relies on MQTT, the Mosquitto broker add-on is automatically installed and started for you when you start the iHost Hardware Control add-on, you need to wait a few minutes to see the Mosquitto broker plugin in the add-ons list.
 
-![img](./images/start.png)
+![img](https://raw.githubusercontent.com/danyinhao/homeassistant-addon/test/hass_control/images/start.png)
 
-![img](./images/addons.png)
+![img](https://raw.githubusercontent.com/danyinhao/homeassistant-addon/test/hass_control/images/addons.png)
 
 
 
@@ -43,14 +43,14 @@ Since the iHost Hardware Control add-on relies on MQTT, the Mosquitto broker add
 
 Please go to Settings -> Devices & Services -> click the Add button for MQTT Integration and wait for the addition to complete.
 
-![img](./images/mqtt.png)
+![img](https://raw.githubusercontent.com/danyinhao/homeassistant-addon/test/hass_control/images/mqtt.png)
 
-![img](./images/config_mqtt.png)
+![img](https://raw.githubusercontent.com/danyinhao/homeassistant-addon/test/hass_control/images/config_mqtt.png)
 
 #### Check iHost Buttons and Indicators in MQTT Integrations
 
 After successfully installing and launching the **iHost Hardware Control** add-on as described above, you can see the buttons and indicators on iHost in the **MQTT** integration.
-![img](./images/mqtt_devices.png)
+![img](https://raw.githubusercontent.com/danyinhao/homeassistant-addon/test/hass_control/images/mqtt_devices.png)
 
 ##### iHost Buttons and Its Entities
 
@@ -58,14 +58,14 @@ There are 4 buttons on the top of the iHost: for power, pairing, mute, and secur
 
 Note: iHost power button pressed and held for 10s will shut down from hardware.
 
-![image-20250411154900741](./images/ihost_buttons.png)
+![image-20250411154900741](https://raw.githubusercontent.com/danyinhao/homeassistant-addon/test/hass_control/images/ihost_buttons.png)
 
-![img](./images/buttons_device.png)
+![img](https://raw.githubusercontent.com/danyinhao/homeassistant-addon/test/hass_control/images/buttons_device.png)
 
 ##### iHost  Indicators and Its Entities
 
 Each of the 4 buttons on the top of the iHost has a blue LED indicator. On the side of the iHost, there is a LED light strip. All the 5 indicators exist as a device named **iHost Indicators**, with 5 **Select** entities, as following:
 
-![image-20250411155046569](./images/ihost_indicators.png)
+![image-20250411155046569](https://raw.githubusercontent.com/danyinhao/homeassistant-addon/test/hass_control/images/ihost_indicators.png)
 
-![img](./images/indicators_device.png)
+![img](https://raw.githubusercontent.com/danyinhao/homeassistant-addon/test/hass_control/images/indicators_device.png)
