@@ -1,9 +1,13 @@
 {
     "name": "HA WebSocket Listener",
-    "version": "2.9.15",
+    "version": "3.0.0",
     "slug": "ha_websocket_listener",
     "description": "Listen to Home Assistant events via WebSocket",
-    "arch": ["amd64", "armv7", "aarch64"],
+    "arch": [
+        "amd64",
+        "armv7",
+        "aarch64"
+    ],
     "startup": "application",
     "url": "https://github.com/danyinhao/homeassistant-addon/tree/main/ws_restart_stop",
     "boot": "auto",
@@ -11,6 +15,8 @@
     "schema": {},
     "hassio_api": true,
     "hassio_role": "default",
-    "map": ["config:rw"],
+    "map": [
+        "config:rw"
+    ],
     "homeassistant_api": true
 }

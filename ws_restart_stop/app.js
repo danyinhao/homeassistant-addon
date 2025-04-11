@@ -50,17 +50,17 @@ ws.on('message', (data) => {
         JSON.stringify({
             id: 1, // 请求 ID
             type: 'subscribe_events',
-            event_type: 'homeassistant_stop', // 监听的事件类型
+            event_type: '', // 监听的事件类型
         })
     );
 
-    ws.send(
-        JSON.stringify({
-            id: 2, // 请求 ID
-            type: 'subscribe_events',
-            event_type: 'homeassistant_start', // 监听的事件类型
-        })
-    );
+    // ws.send(
+    //     JSON.stringify({
+    //         id: 2, // 请求 ID
+    //         type: 'subscribe_events',
+    //         event_type: 'homeassistant_start', // 监听的事件类型
+    //     })
+    // );
 
   } else {
     console.log('Received message:', message);
