@@ -187,4 +187,11 @@ process.on("SIGTERM", (singals) => {
   } catch (e) {
     console.log(e);
   }
+
+  try {
+    const response = await axios.get(`${SUPERVISOR_URL}/info`, { headers });
+    console.log(`/info response = `, JSON.stringify(response.data));
+  } catch (e) {
+    console.log(e);
+  }
 })();
