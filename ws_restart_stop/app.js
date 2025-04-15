@@ -161,29 +161,29 @@ process.on("SIGTERM", (singals) => {
     "Content-Type": "application/json",
   };
   try {
-    const response = await axios.get(`${SUPERVISOR_URL}/core/api/states`, {}, { headers });
-    console.log(`/core/api/states response = `, JSON.stringify(response));
+    const response = await axios.get(`${SUPERVISOR_URL}/core/api/states`, { headers });
+    console.log(`/core/api/states response = `, JSON.stringify(response.data));
   } catch (e) {
     console.log(e);
   }
 
   try {
-    const response = await axios.get(`${SUPERVISOR_URL}/core/info`, {}, { headers });
-    console.log(`/core/info response = `, JSON.stringify(response));
+    const response = await axios.get(`${SUPERVISOR_URL}/core/info`, { headers });
+    console.log(`/core/info response = `, JSON.stringify(response.data));
   } catch (e) {
     console.log(e);
   }
 
-  try {
-    const response = await axios.get(`${SUPERVISOR_URL}/core/api/states`, {}, { headers });
-    console.log(`/core/api/states response = `, JSON.stringify(response));
-  } catch (e) {
-    console.log(e);
-  }
+  // try {
+  //   const response = await axios.get(`${SUPERVISOR_URL}/core/api/states`, { headers });
+  //   console.log(`/core/api/states response = `, JSON.stringify(response.data));
+  // } catch (e) {
+  //   console.log(e);
+  // }
 
   try {
-    const response = await axios.get(`${SUPERVISOR_URL}/core/api/events`, {}, { headers });
-    console.log(`/core/api/events response = `, JSON.stringify(response));
+    const response = await axios.get(`${SUPERVISOR_URL}/core/api/events`, { headers });
+    console.log(`/core/api/events response = `, JSON.stringify(response.data));
   } catch (e) {
     console.log(e);
   }
