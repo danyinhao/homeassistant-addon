@@ -8,17 +8,17 @@ console.log(`wsUrl = `, wsUrl);
 console.log(`haToken = `, haToken);
 
 // 创建 WebSocket 连接
-const ws = new WebSocket(wsUrl,  {
-    autoPong: true,
-    headers: {
-        Authorization: `Bearer ${haToken}`,
-        "Content-Type": "application/json",
-    }
+const ws = new WebSocket(wsUrl, {
+  autoPong: true,
+  headers: {
+    Authorization: `Bearer ${haToken}`,
+    "Content-Type": "application/json",
+  }
 });
 
 // 监听 WebSocket 连接打开事件
 ws.on('open', () => {
-    console.log('WebSocket connection opened');
+  console.log('WebSocket connection opened');
 });
 
 // 监听 WebSocket 消息事件
@@ -41,43 +41,84 @@ ws.on('message', (data) => {
     console.log('Authentication required');
     // 发送认证消息
     ws.send(
-        JSON.stringify({
-            type: 'auth',
-            access_token: haToken,
-        })
+      JSON.stringify({
+        type: 'auth',
+        access_token: haToken,
+      })
     );
   } else if (message.type === 'auth_ok') {
     console.log('Authentication successful');
     const id = Math.floor(Math.random() * 900000) + 100000;
     // 订阅事件
     ws.send(
-        JSON.stringify({
-            id, // 请求 ID
-            type: 'subscribe_trigger',
-            // event_type: 'shutdown', // 监听的事件类型
-            trigger: {
-              "platform": "homeassistant",
-              "event": "shutdown"
-            }
-        })
+      JSON.stringify({
+        id, // 请求 ID
+        type: 'subscribe_trigger',
+        // event_type: 'shutdown', // 监听的事件类型
+        trigger: {
+          "platform": "homeassistant",
+          "event": "shutdown"
+        }
+      })
     );
 
     ws.send(
       JSON.stringify({
-        id: id+1, // 请求 ID
+        id: id + 1, // 请求 ID
         type: 'subscribe_events',
         event_type: 'EVENT_HOMEASSISTANT_STOP', // 监听的事件类型
-      }));
+      })
+    );
 
-      setInterval(() =>{
-        ws.ping();
-      }, 5000);
+    ws.send(
+      JSON.stringify({
+        id: id + 2, // 请求 ID
+        type: 'subscribe_events',
+        event_type: 'homeassistant_started', // 监听的事件类型
+      })
+    );
+
+    ws.send(
+      JSON.stringify({
+        id: id + 3, // 请求 ID
+        type: 'subscribe_events',
+        event_type: 'homeassistant_start', // 监听的事件类型
+      })
+    );
+
+    ws.send(
+      JSON.stringify({
+        id: id + 4, // 请求 ID
+        type: 'subscribe_events',
+        event_type: 'homeassistant_stop', // 监听的事件类型
+      })
+    );
+
+    ws.send(
+      JSON.stringify({
+        id: id + 5, // 请求 ID
+        type: 'subscribe_events',
+        event_type: 'homeassistant_final_write', // 监听的事件类型
+      })
+    );
+
+    ws.send(
+      JSON.stringify({
+        id: id + 6, // 请求 ID
+        type: 'subscribe_events',
+        event_type: 'homeassistant_close', // 监听的事件类型
+      })
+    );
+
+    setInterval(() => {
+      ws.ping();
+    }, 5000);
 
     // ws.send(
     //     JSON.stringify({
-            // id: 2, // 请求 ID
-            // type: 'subscribe_events',
-            // event_type: 'homeassistant_start', // 监听的事件类型
+    // id: 2, // 请求 ID
+    // type: 'subscribe_events',
+    // event_type: 'homeassistant_start', // 监听的事件类型
     //     })
     // );
 
