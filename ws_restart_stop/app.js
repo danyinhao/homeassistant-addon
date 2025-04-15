@@ -156,6 +156,10 @@ process.on("SIGTERM", async (singals) => {
   console.log(`date now = `, Date.now());
 });
 
+const headers = {
+  Authorization: `Bearer ${haToken}`,
+  "Content-Type": "application/json",
+};
 
 async function getSuperviorInfo() {
   try {
@@ -167,10 +171,6 @@ async function getSuperviorInfo() {
 }
 
 (async () => {
-  const headers = {
-    Authorization: `Bearer ${haToken}`,
-    "Content-Type": "application/json",
-  };
   try {
     const response = await axios.get(`${SUPERVISOR_URL}/core/api/states`, { headers });
     console.log(`/core/api/states response = `, JSON.stringify(response.data));
