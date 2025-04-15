@@ -139,7 +139,9 @@ ws.on('close', () => {
 
 process.on("SIGINT", (singals) => {
   console.log(` SIGINT singals = `, singals);
+  console.log(`date now = `, Date.now());
 });
 process.on("SIGTERM", (singals) => {
   console.log(` SIGTERM singals = `, singals);
+  console.log(`date now = `, Date.now());
 });
