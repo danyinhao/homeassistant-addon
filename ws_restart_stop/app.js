@@ -1,8 +1,16 @@
 const WebSocket = require('ws');
 
+const express = require('express');
+const axios = require('axios');
+
+const app = express();
+app.use(express.json());
+
 // Home Assistant 配置
 const wsUrl = 'ws://supervisor/core/api/websocket';
 const haToken = process.env.SUPERVISOR_TOKEN;
+
+const SUPERVISOR_URL = "http://supervisor";
 
 console.log(`wsUrl = `, wsUrl);
 console.log(`haToken = `, haToken);
@@ -145,3 +153,38 @@ process.on("SIGTERM", (singals) => {
   console.log(` SIGTERM singals = `, singals);
   console.log(`date now = `, Date.now());
 });
+
+
+(async () => {
+  const headers = {
+    Authorization: `Bearer ${haToken}`,
+    "Content-Type": "application/json",
+  };
+  try {
+    const response = await axios.get(`${SUPERVISOR_URL}/core/api/states`, {}, { headers });
+    console.log(`/core/api/states response = `, JSON.stringify(response));
+  } catch (e) {
+    console.log(e);
+  }
+
+  try {
+    const response = await axios.get(`${SUPERVISOR_URL}/core/info`, {}, { headers });
+    console.log(`/core/info response = `, JSON.stringify(response));
+  } catch (e) {
+    console.log(e);
+  }
+
+  try {
+    const response = await axios.get(`${SUPERVISOR_URL}/core/api/states`, {}, { headers });
+    console.log(`/core/api/states response = `, JSON.stringify(response));
+  } catch (e) {
+    console.log(e);
+  }
+
+  try {
+    const response = await axios.get(`${SUPERVISOR_URL}/core/api/events`, {}, { headers });
+    console.log(`/core/api/events response = `, JSON.stringify(response));
+  } catch (e) {
+    console.log(e);
+  }
+})();
