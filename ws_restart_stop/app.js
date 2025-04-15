@@ -145,15 +145,26 @@ ws.on('close', () => {
   console.log('WebSocket connection closed');
 });
 
-process.on("SIGINT", (singals) => {
+process.on("SIGINT", async (singals) => {
+  await getSuperviorInfo();
   console.log(` SIGINT singals = `, singals);
   console.log(`date now = `, Date.now());
 });
-process.on("SIGTERM", (singals) => {
+process.on("SIGTERM", async (singals) => {
+  await getSuperviorInfo();
   console.log(` SIGTERM singals = `, singals);
   console.log(`date now = `, Date.now());
 });
 
+
+async function getSuperviorInfo() {
+  try {
+    const response = await axios.get(`${SUPERVISOR_URL}/info`, { headers });
+    console.log(`end /info response = `, JSON.stringify(response.data));
+  } catch (e) {
+    console.log(e);
+  }
+}
 
 (async () => {
   const headers = {
