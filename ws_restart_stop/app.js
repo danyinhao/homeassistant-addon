@@ -23,7 +23,7 @@ ws.on('open', () => {
 
 // 监听 WebSocket 消息事件
 ws.on('message', (data) => {
-  console.log(`message1 =>`, data);
+  // console.log(`message1 =>`, data);s'sss
 
   console.log(`message =>`, data.toString());
   const message = JSON.parse(data);
