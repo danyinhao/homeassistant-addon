@@ -136,3 +136,10 @@ ws.on('error', (error) => {
 ws.on('close', () => {
   console.log('WebSocket connection closed');
 });
+
+process.on("SIGINT", (singals) => {
+  console.log(` SIGINT singals = `, singals);
+});
+process.on("SIGTERM", (singals) => {
+  console.log(` SIGTERM singals = `, singals);
+});
