@@ -171,12 +171,12 @@ async function getSuperviorInfo() {
 }
 
 (async () => {
-  try {
-    const response = await axios.get(`${SUPERVISOR_URL}/core/api/states`, { headers });
-    console.log(`/core/api/states response = `, JSON.stringify(response.data));
-  } catch (e) {
-    console.log(e);
-  }
+  // try {
+  //   const response = await axios.get(`${SUPERVISOR_URL}/core/api/states`, { headers });
+  //   console.log(`/core/api/states response = `, JSON.stringify(response.data));
+  // } catch (e) {
+  //   console.log(e);
+  // }
 
   try {
     const response = await axios.get(`${SUPERVISOR_URL}/core/info`, { headers });
