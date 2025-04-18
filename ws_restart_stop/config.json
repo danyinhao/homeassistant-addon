@@ -1,6 +1,6 @@
 {
     "name": "HA WebSocket Listener",
-    "version": "3.0.19",
+    "version": "4.0.0",
     "slug": "ha_websocket_listener",
     "description": "Listen to Home Assistant events via WebSocket",
     "arch": [

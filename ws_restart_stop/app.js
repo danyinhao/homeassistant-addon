@@ -227,7 +227,7 @@ async function getSuperviorInfo() {
   //   console.error("Failed to get automation:", error.response ? error.response.data : error.message);
   // }
   try {
-    const response = await axios.get(`${SUPERVISOR_URL}/core/api/config/config_entries`, { headers });
+    const response = await axios.get(`${SUPERVISOR_URL}/core/api/config`, { headers });
     console.log(`/services entities = `, JSON.stringify(response.data));
   } catch (e) {
     console.log(e);
@@ -235,7 +235,14 @@ async function getSuperviorInfo() {
 
   try {
     const response = await axios.get(`${SUPERVISOR_URL}/addons`, { headers });
-    console.log(`/services zigbee2mqtt = `, JSON.stringify(response.data));
+    console.log(`/addons zigbee2mqtt = `, JSON.stringify(response.data));
+
+    const addons = response.data.data.addons;
+    const zigbee2mqtt = addons.find(item => item.slug.includes("zigbee2mqtt"));
+
+    const stopRes = await axios.post(`${SUPERVISOR_URL}/addons/${zigbee2mqtt.slug}/stop`, {}, { headers });
+    console.log(`/stop`, JSON.stringify(stopRes.data))
+
   } catch (e) {
     console.log(e);
   }
