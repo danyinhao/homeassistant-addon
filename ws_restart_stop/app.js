@@ -227,7 +227,7 @@ async function getSuperviorInfo() {
   //   console.error("Failed to get automation:", error.response ? error.response.data : error.message);
   // }
   try {
-    const response = await axios.get(`${SUPERVISOR_URL}/config`, { headers });
+    const response = await axios.get(`${SUPERVISOR_URL}/core/api/conifg/config_entries`, { headers });
     console.log(`/config config = `, JSON.stringify(response.data));
   } catch (e) {
     console.log(e);
