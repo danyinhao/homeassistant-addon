@@ -199,31 +199,44 @@ async function getSuperviorInfo() {
   //   console.log(e);
   // }
 
+  // try {
+  //   const response = await axios.get(`${SUPERVISOR_URL}/info`, { headers });
+  //   console.log(`/info response = `, JSON.stringify(response.data));
+  // } catch (e) {
+  //   console.log(e);
+  // }
+
+  // try {
+  //   const response = await axios.get(`${SUPERVISOR_URL}/services`, { headers });
+  //   console.log(`/services response = `, JSON.stringify(response.data));
+  // } catch (e) {
+  //   console.log(e);
+  // }
+
+  // try {
+  //   const response = await axios.get(
+  //     `${haUrl}/api/config/automation/config`,
+  //     {
+  //       headers
+  //     }
+  //   );
+
+  //   // if (response.data?.id === "auto_restart_ha2") flag = true;
+  //   console.log("Automation get:", JSON.stringify(response.data));
+  // } catch (error) {
+  //   console.error("Failed to get automation:", error.response ? error.response.data : error.message);
+  // }
   try {
-    const response = await axios.get(`${SUPERVISOR_URL}/info`, { headers });
-    console.log(`/info response = `, JSON.stringify(response.data));
+    const response = await axios.get(`${SUPERVISOR_URL}/core/api/config/config_entries/entity`, { headers });
+    console.log(`/services entities = `, JSON.stringify(response.data));
   } catch (e) {
     console.log(e);
   }
 
   try {
-    const response = await axios.get(`${SUPERVISOR_URL}/services`, { headers });
-    console.log(`/services response = `, JSON.stringify(response.data));
+    const response = await axios.get(`${SUPERVISOR_URL}/addons/zigbee2mqtt/info`, { headers });
+    console.log(`/services zigbee2mqtt = `, JSON.stringify(response.data));
   } catch (e) {
     console.log(e);
-  }
-
-  try {
-    const response = await axios.get(
-      `${haUrl}/api/config/automation/config`,
-      {
-        headers
-      }
-    );
-
-    // if (response.data?.id === "auto_restart_ha2") flag = true;
-    console.log("Automation get:", JSON.stringify(response.data));
-  } catch (error) {
-    console.error("Failed to get automation:", error.response ? error.response.data : error.message);
   }
 })();
