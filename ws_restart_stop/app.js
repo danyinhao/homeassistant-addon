@@ -58,65 +58,65 @@ ws.on('message', (data) => {
     console.log('Authentication successful');
     const id = Math.floor(Math.random() * 900000) + 100000;
     // 订阅事件
-    ws.send(
-      JSON.stringify({
-        id, // 请求 ID
-        type: 'subscribe_trigger',
-        // event_type: 'shutdown', // 监听的事件类型
-        trigger: {
-          "platform": "homeassistant",
-          "event": "shutdown"
-        }
-      })
-    );
+    // ws.send(
+    //   JSON.stringify({
+    //     id, // 请求 ID
+    //     type: 'subscribe_trigger',
+    //     // event_type: 'shutdown', // 监听的事件类型
+    //     trigger: {
+    //       "platform": "homeassistant",
+    //       "event": "shutdown"
+    //     }
+    //   })
+    // );
 
-    ws.send(
-      JSON.stringify({
-        id: id + 1, // 请求 ID
-        type: 'subscribe_events',
-        event_type: 'EVENT_HOMEASSISTANT_STOP', // 监听的事件类型
-      })
-    );
+    // ws.send(
+    //   JSON.stringify({
+    //     id: id + 1, // 请求 ID
+    //     type: 'subscribe_events',
+    //     event_type: 'EVENT_HOMEASSISTANT_STOP', // 监听的事件类型
+    //   })
+    // );
 
-    ws.send(
-      JSON.stringify({
-        id: id + 2, // 请求 ID
-        type: 'subscribe_events',
-        event_type: 'homeassistant_started', // 监听的事件类型
-      })
-    );
+    // ws.send(
+    //   JSON.stringify({
+    //     id: id + 2, // 请求 ID
+    //     type: 'subscribe_events',
+    //     event_type: 'homeassistant_started', // 监听的事件类型
+    //   })
+    // );
 
-    ws.send(
-      JSON.stringify({
-        id: id + 3, // 请求 ID
-        type: 'subscribe_events',
-        event_type: 'homeassistant_start', // 监听的事件类型
-      })
-    );
+    // ws.send(
+    //   JSON.stringify({
+    //     id: id + 3, // 请求 ID
+    //     type: 'subscribe_events',
+    //     event_type: 'homeassistant_start', // 监听的事件类型
+    //   })
+    // );
 
-    ws.send(
-      JSON.stringify({
-        id: id + 4, // 请求 ID
-        type: 'subscribe_events',
-        event_type: 'homeassistant_stop', // 监听的事件类型
-      })
-    );
+    // ws.send(
+    //   JSON.stringify({
+    //     id: id + 4, // 请求 ID
+    //     type: 'subscribe_events',
+    //     event_type: 'homeassistant_stop', // 监听的事件类型
+    //   })
+    // );
 
-    ws.send(
-      JSON.stringify({
-        id: id + 5, // 请求 ID
-        type: 'subscribe_events',
-        event_type: 'homeassistant_final_write', // 监听的事件类型
-      })
-    );
+    // ws.send(
+    //   JSON.stringify({
+    //     id: id + 5, // 请求 ID
+    //     type: 'subscribe_events',
+    //     event_type: 'homeassistant_final_write', // 监听的事件类型
+    //   })
+    // );
 
-    ws.send(
-      JSON.stringify({
-        id: id + 6, // 请求 ID
-        type: 'subscribe_events',
-        event_type: 'homeassistant_close', // 监听的事件类型
-      })
-    );
+    // ws.send(
+    //   JSON.stringify({
+    //     id: id + 6, // 请求 ID
+    //     type: 'subscribe_events',
+    //     event_type: 'homeassistant_close', // 监听的事件类型
+    //   })
+    // );
 
     setInterval(() => {
       ws.ping();
@@ -227,14 +227,14 @@ async function getSuperviorInfo() {
   //   console.error("Failed to get automation:", error.response ? error.response.data : error.message);
   // }
   try {
-    const response = await axios.get(`${SUPERVISOR_URL}/core/api/config/config_entries/entity`, { headers });
+    const response = await axios.get(`${SUPERVISOR_URL}/core/api/config/config_entries`, { headers });
     console.log(`/services entities = `, JSON.stringify(response.data));
   } catch (e) {
     console.log(e);
   }
 
   try {
-    const response = await axios.get(`${SUPERVISOR_URL}/addons/zigbee2mqtt/info`, { headers });
+    const response = await axios.get(`${SUPERVISOR_URL}/addons`, { headers });
     console.log(`/services zigbee2mqtt = `, JSON.stringify(response.data));
   } catch (e) {
     console.log(e);
