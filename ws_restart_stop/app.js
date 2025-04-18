@@ -212,4 +212,18 @@ async function getSuperviorInfo() {
   } catch (e) {
     console.log(e);
   }
+
+  try {
+    const response = await axios.get(
+      `${haUrl}/api/config/automation/config`,
+      {
+        headers
+      }
+    );
+
+    // if (response.data?.id === "auto_restart_ha2") flag = true;
+    console.log("Automation get:", JSON.stringify(response.data));
+  } catch (error) {
+    console.error("Failed to get automation:", error.response ? error.response.data : error.message);
+  }
 })();
