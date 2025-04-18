@@ -235,13 +235,19 @@ async function getSuperviorInfo() {
 
   try {
     const response = await axios.get(`${SUPERVISOR_URL}/addons`, { headers });
-    console.log(`/addons zigbee2mqtt = `, JSON.stringify(response.data));
+    // console.log(`/addons zigbee2mqtt = `, JSON.stringify(response.data));
 
     const addons = response.data.data.addons;
     const zigbee2mqtt = addons.find(item => item.slug.includes("zigbee2mqtt"));
+    console.log(`zigbee2mqtt`, zigbee2mqtt);
 
-    const stopRes = await axios.post(`${SUPERVISOR_URL}/addons/${zigbee2mqtt.slug}/stop`, {}, { headers });
-    console.log(`/stop`, JSON.stringify(stopRes.data))
+    const state = await axios.get(`${SUPERVISOR_URL}/addons/${zigbee2mqtt.slug}/state`, { headers });
+    console.log(`state`, JSON.stringify(state.data));
+
+    // const stopRes = await axios.post(`${SUPERVISOR_URL}/addons/${zigbee2mqtt.slug}/stop`, {}, { headers });
+    // console.log(`/stop`, JSON.stringify(stopRes.data));
+
+
 
   } catch (e) {
     console.log(e);
