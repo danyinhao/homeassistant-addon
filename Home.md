@@ -1,60 +1,61 @@
+[中文文档](wiki_zh.md)
 # iHost Hardware Control Add-on Wiki
 
-## Add-on概述
+## Add-on Overview
 
-**iHost Hardware Control Addon** 是我们为 iHost 网关专属开发的硬件控制插件。该插件通过 MQTT 协议与 Home Assistant 进行通信，将 iHost 的实体按键、状态指示灯、RGB 灯带等硬件能力完整映射到 Home Assistant 中。
+The **iHost Hardware Control Addon** is a hardware control add-on exclusively developed for the iHost gateway. This add-on communicates with Home Assistant via the MQTT protocol, fully mapping iHost's hardware capabilities, such as physical buttons, status indicators, and RGB light strips, to Home Assistant.
+Users can freely configure and link these hardware resources using Home Assistant's automation features, creating a more personalized and intelligent interaction experience based on their habits and home scenarios.
 
-用户可以通过 Home Assistant 的自动化功能，自由配置和联动这些硬件资源，构建更贴合个人习惯和家庭场景的智能交互体验。
+## Entities Provided by the add-on
 
-## 插件提供的实体能力
+### iHost Buttons 
 
-### iHost 按键
+The iHost device has 4 physical buttons on the top: Power Button, Pairing Button, Mute Button, and Security Button, as well as a small hole on the side for a Reset Button. These 5 buttons are represented as a device called **"iHost Buttons"** and have 5 associated <event> entities. Please refer to the table below for specific details.
 
-在 iHost 机身上方有4个物理按键，分别为电源按键、配对按键、静音按键、安防按键，机身侧边有一个小孔内重置按键，这5个按键都会作为一个名为“iHost 按键”的设备存在，其带有5个<event>实体，具体信息参考下方表格
+- **Note**: *A long press (10 seconds) on the Power Button will turn off the iHost hardware.*
 
-- 注意：iHost 电源按键长按10s 将会从硬件上关机
+| Device        | Entities | Capabilities                                                 |
+| ------------- | -------- | ------------------------------------------------------------ |
+| iHost Buttons | Power    | Single Click                                                 |
+| iHost Buttons | Pairing  | Single Click                                                 |
+| iHost Buttons | Mute     | Single Click                                                 |
+| iHost Buttons | Security | Single Click                                                 |
+| iHost Buttons | Reset    | Double Click Long Press  (Hold the button for more than 10s) |
 
-| 设备       | 实体     | 能力                          |
-| ---------- | -------- | ----------------------------- |
-| iHost 按键 | 电源按键 | 单击                          |
-| iHost 按键 | 配对按键 | 单击                          |
-| iHost 按键 | 静音按键 | 单击                          |
-| iHost 按键 | 安防按键 | 单击                          |
-| iHost 按键 | 重置按键 | 双击、长按（按住按键超过10s） |
+### iHost Indicator 
 
-### 指示灯设备实体
+Each of the 4 physical buttons on the iHost has a blue indicator light, and there is also a long light strip on the side. These 5 indicator lights are represented as a device called **"iHost Indicators"**, each having a **Select** entity. Please refer to the table below for specific details.
 
-iHost 机身上方的 4 个按键都分别有一个蓝色指示灯，机身侧边有一个长灯条，这5个指示灯都会作为一个名为“iHost 指示灯”的设备存在，其带有5个 **Select** entity ，具体信息参考下方表格
+| Device           | Entities   | Capabilities                                                 |
+| ---------------- | ---------- | ------------------------------------------------------------ |
+| iHost Indicators | Power      | On ,Off ,Rapid Flashing、Double Flashing                     |
+| iHost Indicators | Pairing    | On ,Off ,Rapid Flashing、Double Flashing                     |
+| iHost Indicators | Mute       | On ,Off ,Rapid Flashing、Double Flashing                     |
+| iHost Indicators | Security   | On ,Off ,Rapid Flashing、Double Flashing                     |
+| iHost Indicators | Side Strip | 1. Off <br />2. On <br />3. Solid Blue <br />4. Solid Red <br />5. Solid Green<br />6. Solid Yellow <br />7. Solid Orange<br /> 8. Solid Purple <br />9. Rapid Flashing Red <br />10. Rapid Flashing Blue<br /> 11. Rapid Flashing Yellow<br /> 12. Double Flashing Red<br /> 13. Double Flashing Blue <br />14. Double Flashing Green<br /> 15. Double Flashing Red then Revert <br />16. Double Flashing Blue then Revert <br />17. Double Flashing Green then Revert <br />18. Breathing Red <br />19. Breathing Blue<br /> 20. Breathing Yellow<br /> 21. Breathing Green <br />22. Breathing Orange<br /> 23. Breathing Purple <br />24. Marquee Red |
 
-| 设备         | 实体           | 能力                                                         |
-| ------------ | -------------- | ------------------------------------------------------------ |
-| iHost 指示灯 | 电源按键指示灯 | 关闭（Off）打开（蓝色常亮）（On）快闪（Rapid Flashing）周期性双闪  （Double Flashing ） |
-| iHost 指示灯 | 配对按键指示灯 | 关闭（Off）打开（蓝色常亮）（On）快闪（Rapid Flashing）周期性双闪  （Double Flashing ） |
-| iHost 指示灯 | 静音按键指示灯 | 关闭（Off）打开（蓝色常亮）（On）快闪（Rapid Flashing）周期性双闪  （Double Flashing ） |
-| iHost 指示灯 | 安防按键指示灯 | 关闭（Off）打开（蓝色常亮）（On）快闪（Rapid Flashing）周期性双闪  （Double Flashing ） |
-| iHost 指示灯 | 侧边指示灯条   | 关闭 （Off）<br />打开（显示上次关闭时的灯效）（On）<br /> 蓝色常亮 （Solid Blue ）<br />红色常亮（Solid Red ）<br /> 绿色常亮（Solid Green） <br />黄色常亮（Solid Yellow）<br />橙色常亮（Solid Orange）<br />紫色常亮（Solid Purple ）<br />红色快闪（Rapid Flashing Red）<br />蓝色快闪（Rapid Flashing Blue ）<br />黄色快闪（Rapid Flashing Yellow ）<br />红色周期性双闪（  Double Flashing Red  ）<br /> 蓝色周期性双闪（ Double Flashing Blue   ） <br />绿色周期性双闪（ Double Flashing Green  ）<br /> 红色单次双闪（ Double Flashing Red then Revert  ）<br />蓝色单次双闪（ Double Flashing Blue then Revert  ）<br />绿色单次双闪（ Double Flashing Green then Revert  ） <br /> 红色呼吸（ Breathing Red  ）<br />蓝色呼吸（ Breathing Blue）<br />黄色呼吸（ Breathing Yellow）<br />绿色呼吸（Breathing Green ）<br />橙色呼吸（ Breathing Orange）<br />紫色呼吸 （Breathing Purple ）<br />红色跑马灯（Red Marquee Light） |
+These entities will be displayed in Home Assistant in the standard way and can be used to create automation rules or scripts.
 
-这些实体会在 Home Assistant 中以标准方式展示，用户可用于创建自动化规则或脚本。
+## Recommended Automation Settings
 
-## 推荐的 Automation 设置
+We have designed the following recommended automation settings to help you quickly experience the core value of the add-on. All of the following can be easily implemented using Home Assistant's "Automation" feature:
 
-我们为用户设计了以下推荐的自动化设置，帮助你快速体验插件的核心价值。以下内容均可通过 Home Assistant 的“自动化”功能轻松实现：
+### Setting Startup Light Effect
 
-### 1. 设置开机提示灯效
+#### Scenario Description:
 
-**场景描述**：希望 Home Assistant 启动完成后，有明显的灯光提示。
+You want a noticeable light effect when Home Assistant finishes starting up.
 
-**实现方式**：
+#### Implementation：
 
 1. Create new automation.
-
-2. When -> Add Trigger -> Device -> iHost Hardware Automations ->“Home Assistant”is started.
+2. When -> Add Trigger -> Device -> iHost Hardware Automations -> "Home Assistant" is started.
 
 ![img](./wiki_images/trigger01.png)
 
 ![img](./wiki_images/trigger02.png)
 
-3. Action -> Add action -> Device -> iHost Indicators -> Change iHost Indicators Side Strip option -> Solid Green.
+3. Action -> Add action -> Device -> iHost Indicators -> Change iHost Indicators Side Strip option -> Solid Green. This scenario helps indicate whether the system is ready.
 
 ![img](./wiki_images/action01.png)
 
@@ -64,139 +65,160 @@ iHost 机身上方的 4 个按键都分别有一个蓝色指示灯，机身侧�
 
 ![img](./wiki_images/automation01.png)
 
-此场景适用于判断系统是否准备就绪。
+### Automatically Turn Off Lights After Shutdown
 
-### 2. 关机后自动关闭灯效
+#### Scenario Description: 
 
-**场景描述**：在 iHost 关机时自动熄灭所有灯效，节省能耗、避免误导。
+Automatically turn off all lights when iHost shuts down to save energy and avoid confusion.
 
-**实现方式**：
+#### Implementation: 
 
-无需用户配置，系统关闭时addon会自动关闭所有灯效，无需手动干预。
+No user configuration is required. The addon will automatically turn off all lights when the system shuts down, with no manual intervention needed.
 
-### 3. 按键反馈灯效
+### Button Feedback Light Effect
 
-**场景描述**：在 iHost 单击配对按键时，按键指示灯有反馈灯效，打开指示灯，200ms后再关闭指示灯。
+#### Scenario Description: 
 
-**实现方式**：
+When you press the Pairing Button on iHost, the button indicator has a feedback light effect: turn on the indicator, then turn it off after 200ms.
+
+#### Implementation:
 
 1. Create new automation.
-2. When -> Add Trigger -> Device -> iHost Buttons -> "Single Click" Pairing
+2. When -> Add Trigger -> Device -> iHost Buttons -> "Single Click" Pairing.
 
 ![img](./wiki_images/trigger03.png)
 
 ![img](./wiki_images/trigger04.png)
 
-3. Action -> Add action -> Device -> iHost Indicators -> Change iHost Indicators Pairing option -> on
+3. Action -> Add action -> Device -> iHost Indicators -> Change iHost Indicators Pairing option -> On.
 
 ![img](./wiki_images/action04.png)
 
 ![img](./wiki_images/action05.png)
 
-4. Action -> Add action -> Delay for 200 milliseconds
-5. Action -> Add action -> Device -> iHost Indicators -> Change iHost Indicators Pairing option -> off
+4. Action -> Add action -> Delay for 200 milliseconds.
+
+5. Action -> Add action -> Device -> iHost Indicators -> Change iHost Indicators Pairing option -> Off.
 
 ![img](./wiki_images/action06.png)
 
 ![img](./wiki_images/automation02.png)
 
-### 4. 利用配对键控制 Zigbee2MQTT 入网灯效
+### Using the Pairing Button to Control Zigbee2MQTT Network Join Light Effects
 
-**场景描述(4个自动化)**：
+#### Scenario Description (4 automations):
 
-1. 按下配对键，显示按键灯效 (打开指示灯，200ms后再关闭指示灯)，并允许 ZigBee 子设备加入网络。
+1. Press the Pairing Button to show the button light effect (turn on the indicator, then turn it off after 200ms) and allow ZigBee devices to join the network.
+
 ![img](./wiki_images/trigger05.png)
-2. 配网过程中，按下配对键，显示按键灯效 (打开指示灯，200ms后再关闭指示灯)，停止ZigBee入网。
+
+2. During the network joining process, press the Pairing Button to show the button light effect (turn on the indicator, then turn it off after 200ms) and stop ZigBee network joining.
+
 ![img](./wiki_images/action07.png)
-3. 配网中，灯带显示灯效（橙色呼吸）。
+
+3. During the network joining process, the light strip shows an orange breathing light effect.
+
 ![img](./wiki_images/action08.png)
-4. 配网停止，灯带显示灯效（绿色常量）。
+
+4. After network joining stops, the light strip shows a solid green light effect.
+
 ![img](./wiki_images/action09.png)
 
-**【自动化一】未配对状态，配对按键触发允许入网**：
+##### [Automation 1] No Pairing State, Pairing Button to Trigger Network Join:
 
 1. Create new automation.
-2. When -> Add Trigger -> Device -> iHost Buttons -> "Single Click" Pairing
-3. And if -> Add condition -> Device -> Zigbee2MQTT Bridge -> Zigbee2MQTT Bridge Permit join is off
+2. When -> Add Trigger -> Device -> iHost Buttons -> "Single Click" Pairing.
+3. And if -> Add condition -> Device -> Zigbee2MQTT Bridge -> Zigbee2MQTT Bridge Permit join is off.
 4. Action -> Add action -> Device -> Zigbee2MQTT Bridge -> Turn on Zigbee2MQTT Bridge Permit join.
 
-**【自动化二】配对中，配对按键触发停止入网**：
+##### [Automation 2]  During Pairing, Pairing Button to Stop Network Join:
 
 1. Create new automation.
-2. When -> Add Trigger -> Device -> iHost Buttons -> "Single Click" Pairing
-3. And if -> Add condition -> Device -> Zigbee2MQTT Bridge -> Zigbee2MQTT Bridge Permit join is on
+2. When -> Add Trigger -> Device -> iHost Buttons -> "Single Click" Pairing.
+3. And if -> Add condition -> Device -> Zigbee2MQTT Bridge -> Zigbee2MQTT Bridge Permit join is on.
 4. Action -> Add action -> Device -> Zigbee2MQTT Bridge -> Turn off Zigbee2MQTT Bridge Permit join.
 
-**【自动化三】检测到配对中**
+##### [Automation 3] Detecting Pairing Mode:
 
 1. Create new automation.
-2. When -> Add Trigger -> Device -> Zigbee2MQTT Bridge -> Zigbee2MQTT Bridge Permit join turned on
-3. Action -> Add action -> Device -> iHost Indicators -> Change iHost Indicators Side Strip option -> Breathing Orange
+2. When -> Add Trigger -> Device -> Zigbee2MQTT Bridge -> Zigbee2MQTT Bridge Permit join turned on.
+3. Action -> Add action -> Device -> iHost Indicators -> Change iHost Indicators Side Strip option -> Breathing Orange.
 
-**【自动化四】检测到退出配对**
+##### [Automation 4] Detecting Pairing Exit:
 
 1. Create new automation.
-2. When -> Add Trigger -> Device -> Zigbee2MQTT Bridge -> Zigbee2MQTT Bridge Permit join turned off
+2. When -> Add Trigger -> Device -> Zigbee2MQTT Bridge -> Zigbee2MQTT Bridge Permit join turned off.
 3. Action -> Add action -> Device -> iHost Indicators -> Change iHost Indicators Side Strip option -> Solid Green.
 
-### 5. 网络离线告警灯效
+### Network Offline Alarm Light Effect
 
-**场景描述**：当设备无法访问互联网时，灯带呈现红色警示。需要安装Ping（ICMP）集成，ping地址为8.8.8.8。
+#### Scenario Description:
+
+ When the device is unable to access the internet, the light strip displays a red warning. The Ping (ICMP) integration should be installed with the ping address set to 8.8.8.8. 
 
 ![img](./wiki_images/integration01.png)
 
-**实现方式**：
+#### Implementation:
 
 1. Create new automation.
-2. When -> Add Trigger -> Trigger on the 3rd second of every minute of every hour
+2. When -> Add Trigger -> Trigger on the 3rd second of every minute of every hour.
+
 ![img](./wiki_images/trigger06.png)
-3. And if -> Add condition -> Device -> 8.8.8.8(ping集成提供的设备) -> 8.8.8.8 is disconnected
+3. And if -> Add condition -> Device -> 8.8.8.8 (Ping integration device) -> 8.8.8.8 is disconnected.
+
 ![img](./wiki_images/trigger07.png)
-4. Action -> Add action -> Device -> iHost Indicators -> Change iHost Indicators Side Strip option -> Solid Red
+4. Action -> Add action -> Device -> iHost Indicators -> Change iHost Indicators Side Strip option -> Solid Red.
+
 ![img](./wiki_images/automation05.png)
 
-### 6. 网络恢复灯效提示
+### Network Recovery Light Effect
 
-**场景描述**：当网络恢复时，灯带自动恢复绿色常亮，提示系统恢复正常。需要安装Ping（ICMP）集成，ping地址为8.8.8.8。
+#### Scenario Description:
+
+ When the network recovers, the light strip automatically turns back to solid green, signaling that the system has returned to normal.
 
 ![img](./wiki_images/automation03.png)
 
-**实现方式**：
+#### Implementation:
 
 1. Create new automation.
-2. When -> Add Trigger -> Trigger on the 3rd second of every minute of every hour
-3. And if -> Add condition -> Device -> 8.8.8.8(ping集成提供的设备) -> 8.8.8.8 is connected
+2. When -> Add Trigger -> Trigger on the 3rd second of every minute of every hour.
+3. And if -> Add condition -> Device -> 8.8.8.8 (Ping integration device) -> 8.8.8.8 is connected.
 
 ![img](./wiki_images/action10.png)
 
-1. Action -> Add action -> Device -> iHost Indicators -> Change iHost Indicators Side Strip option -> Solid Green.
+4. Action -> Add action -> Device -> iHost Indicators -> Change iHost Indicators Side Strip option -> Solid Green.
 
 ![img](./wiki_images/action11.png)
 
-### 7. 夜间关闭所有灯效
+### Turn Off All Lights at Night
 
-**场景描述**：夜间自动关闭所有指示灯和灯带，避免光污染或影响休息。
+#### Scenario Description:
+
+Automatically turn off all indicators and light strips at night to avoid light pollution or disruption during sleep. 
+
 ![img](./wiki_images/automation04.png)
 
-**实现方式**：
+#### Implementation:
 
 1. Create new automation.
-2. When -> Add Trigger -> When the time is equal to 11:30 PM
-3. Action -> Add action -> Device -> iHost Indicators -> Change iHost Indicators Side Strip option -> off.
-4. Action -> Add action -> Device -> iHost Indicators -> Change iHost Indicators Power option -> off
-5. Action -> Add action -> Device -> iHost Indicators -> Change iHost Indicators Pairing option -> off
-6. Action -> Add action -> Device -> iHost Indicators -> Change iHost Indicators Security option -> off
-7. Action -> Add action -> Device -> iHost Indicators -> Change iHost Indicators Mute option -> off
+2. When -> Add Trigger -> When the time is equal to 11:30 PM.
+3. Action -> Add action -> Device -> iHost Indicators -> Change iHost Indicators Side Strip option -> Off.
+4. Action -> Add action -> Device -> iHost Indicators -> Change iHost Indicators Power option -> Off.
+5. Action -> Add action -> Device -> iHost Indicators -> Change iHost Indicators Pairing option -> Off.
+6. Action -> Add action -> Device -> iHost Indicators -> Change iHost Indicators Security option -> Off.
+7. Action -> Add action -> Device -> iHost Indicators -> Change iHost Indicators Mute option -> Off.
 
-------
+### Use the Power Button for Physical Shutdown
 
-### 8. 使用电源键物理关机
+#### Scenario Description: 
 
-**场景描述**：无需使用 Web 界面，直接通过机身物理按键实现关机操作。
+Shutdown can be performed directly via the physical button on the iHost device, without using the web interface. 
 
-**实现方式**：
+#### Implementation:
 
-- 长按电源按键约 10 秒钟，系统将执行关机操作。
-- 若需再次开机，只需轻按电源键一次。
+1. Press and hold the Power Button for approximately 10 seconds to initiate shutdown.
 
-此功能无需配置，已由插件自动处理。适合断电保护场景或维护需求。
+2. To turn the system back on, simply press the Power Button once. This feature does not require configuration and is automatically handled by the add-on. 
+
+   **Note:** *It is ideal for power-off protection or maintenance scenarios.*
