@@ -233,6 +233,13 @@ async function getSuperviorInfo() {
     console.log(e);
   }
 
+  try {
+    const response = await axios.get(`${SUPERVISOR_URL}/core/api/events`, { headers });
+    console.log(`/events events = `, JSON.stringify(response.data));
+  } catch (e) {
+    console.log(e);
+  }
+
   // try {
   //   const response = await axios.get(`${SUPERVISOR_URL}/addons`, { headers });
   //   // console.log(`/addons zigbee2mqtt = `, JSON.stringify(response.data));
