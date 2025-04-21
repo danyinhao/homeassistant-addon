@@ -226,9 +226,16 @@ async function getSuperviorInfo() {
   // } catch (error) {
   //   console.error("Failed to get automation:", error.response ? error.response.data : error.message);
   // }
+  // try {
+  //   const response = await axios.get(`${SUPERVISOR_URL}/api/config/config_entries`, { headers });
+  //   console.log(`/config config = `, JSON.stringify(response.data));
+  // } catch (e) {
+  //   console.log(e?.response?.status);
+  // }
+
   try {
-    const response = await axios.get(`${SUPERVISOR_URL}/api/config/config_entries`, { headers });
-    console.log(`/config config = `, JSON.stringify(response.data));
+    const response = await axios.get(`${SUPERVISOR_URL}/api/services`, { headers });
+    console.log(`/services services = `, JSON.stringify(response.data));
   } catch (e) {
     console.log(e?.response?.status);
   }
