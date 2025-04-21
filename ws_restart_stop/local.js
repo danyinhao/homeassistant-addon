@@ -8,7 +8,7 @@ app.use(express.json());
 
 // Home Assistant 配置
 const wsUrl = 'ws://supervisor/core/api/websocket';
-const haToken = process.env.SUPERVISOR_TOKEN ?? "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJiOTEzOGE5NGU2ODI0OTIzYjliYTM4MDE4NzMxMmE1ZCIsImlhdCI6MTc0NTIxODk2OSwiZXhwIjoyMDYwNTc4OTY5fQ.mSQRVHJ7TUrMHrlIdmAplO0_qWefcYqNKv9aApy3FnI";
+const haToken = process.env.SUPERVISOR_TOKEN;
 
 const SUPERVISOR_URL = "http://192.168.50.178:8123";
 
