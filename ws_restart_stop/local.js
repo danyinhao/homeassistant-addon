@@ -7,10 +7,10 @@ const app = express();
 app.use(express.json());
 
 // Home Assistant 配置
-const wsUrl = 'ws://supervisor/core/api/websocket';
-const haToken = process.env.SUPERVISOR_TOKEN;
+const wsUrl = 'ws://192.168.50.178:8123/api/websocket' ?? "ws://supervisor/core/api/websocket";
+const haToken = process.env.SUPERVISOR_TOKEN ?? "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI1MDg0NTkyMmVjYjE0YjVkOTExZGQ2OGVhMDNmZDIzNSIsImlhdCI6MTc0NTI4ODQ5MiwiZXhwIjoyMDYwNjQ4NDkyfQ.U0GzczMUI7VUHZzjp-YpXnCE524BfoIrlIj_6Y96f3Y";
 
-const SUPERVISOR_URL = "http://192.168.50.178:8123";
+const SUPERVISOR_URL = "http://192.168.50.178:8123" ?? "http://supervisor";
 
 // console.log(`wsUrl = `, wsUrl);
 // console.log(`haToken = `, haToken);
@@ -46,17 +46,13 @@ ws.on('message', (data) => {
     );
   } else if (message.type === 'auth_ok') {
     console.log('Authentication successful');
-    const id = Math.floor(Math.random() * 900000) + 100000;
 
     ws.send(
       JSON.stringify({
         "type": "config_entries/subscribe",
-        "type_filter": [
-          "device",
-          "hub",
-          "service",
-          "hardware"
-        ],
+        // "type_filter": [
+        //   "device"
+        // ],
         "id": 1
       })
     );
@@ -104,19 +100,19 @@ ws.on('close', () => {
   console.log('WebSocket connection closed');
 });
 
-process.on("SIGINT", async (singals) => {
-  // await getSuperviorInfo();
-  console.log(` SIGINT singals = `, singals);
-  console.log(`date now = `, Date.now());
-  ws.close();
+// process.on("SIGINT", async (singals) => {
+//   // await getSuperviorInfo();
+//   console.log(` SIGINT singals = `, singals);
+//   console.log(`date now = `, Date.now());
+//   ws.close();
 
-});
-process.on("SIGTERM", async (singals) => {
-  // await getSuperviorInfo();
-  console.log(` SIGTERM singals = `, singals);
-  console.log(`date now = `, Date.now());
-  ws.close();
-});
+// });
+// process.on("SIGTERM", async (singals) => {
+//   // await getSuperviorInfo();
+//   console.log(` SIGTERM singals = `, singals);
+//   console.log(`date now = `, Date.now());
+//   ws.close();
+// });
 
 const headers = {
   Authorization: `Bearer ${haToken}`,

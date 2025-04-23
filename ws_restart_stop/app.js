@@ -247,25 +247,26 @@ async function getSuperviorInfo() {
   //   console.log(e);
   // }
 
-  // try {
-  //   const response = await axios.get(`${SUPERVISOR_URL}/addons`, { headers });
-  //   // console.log(`/addons zigbee2mqtt = `, JSON.stringify(response.data));
+  // HA addon 环境停止zigee2mqtt addon demo
+  try {
+    const response = await axios.get(`${SUPERVISOR_URL}/addons`, { headers });
+    // console.log(`/addons zigbee2mqtt = `, JSON.stringify(response.data));
 
-  //   const addons = response.data.data.addons;
-  //   const zigbee2mqtt = addons.find(item => item.slug.includes("zigbee2mqtt"));
-  //   console.log(`zigbee2mqtt`, zigbee2mqtt);
+    const addons = response.data.data.addons;
+    const zigbee2mqtt = addons.find(item => item.slug.includes("zigbee2mqtt"));
+    console.log(`zigbee2mqtt`, zigbee2mqtt);
 
-  //   const state = await axios.get(`${SUPERVISOR_URL}/addons/${zigbee2mqtt.slug}/info`, { headers });
-  //   console.log(`info 1`, JSON.stringify(state.data));
+    const state = await axios.get(`${SUPERVISOR_URL}/addons/${zigbee2mqtt.slug}/info`, { headers });
+    console.log(`info 1`, JSON.stringify(state.data));
 
-  //   if (state.data.state != "started") {
-  //     const stopRes = await axios.post(`${SUPERVISOR_URL}/addons/${zigbee2mqtt.slug}/stop`, {}, { headers });
-  //     console.log(`/stop`, JSON.stringify(stopRes.data));
-  //     const state2 = await axios.get(`${SUPERVISOR_URL}/addons/${zigbee2mqtt.slug}/info`, { headers });
-  //     console.log(`info 2`, JSON.stringify(state2.data));
-  //   }
+    if (state.data.state != "started") {
+      const stopRes = await axios.post(`${SUPERVISOR_URL}/addons/${zigbee2mqtt.slug}/stop`, {}, { headers });
+      console.log(`/stop`, JSON.stringify(stopRes.data));
+      const state2 = await axios.get(`${SUPERVISOR_URL}/addons/${zigbee2mqtt.slug}/info`, { headers });
+      console.log(`info 2`, JSON.stringify(state2.data));
+    }
 
-  // } catch (e) {
-  //   console.log(e);
-  // }
+  } catch (e) {
+    console.log(e);
+  }
 })();
