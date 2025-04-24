@@ -35,28 +35,28 @@ const SUPERVISOR_URL = "http://supervisor";
 
 //   console.log(`message =>`, data.toString());
 //   const message = JSON.parse(data);
-//   if (message.type === 'event') {
-//     const event = message.event;
+// if (message.type === 'event') {
+//   const event = message.event;
 
-//     if (event.event_type === 'homeassistant_stop') {
-//       console.log('Home Assistant is stopping...');
-//       // 在这里执行关机逻辑
-//     } else if (event.event_type === 'homeassistant_start') {
-//       console.log('Home Assistant is starting...');
-//       // 在这里执行启动逻辑
-//     }
-//   } else if (message.type === 'auth_required') {
-//     console.log('Authentication required');
-//     // 发送认证消息
-//     ws.send(
-//       JSON.stringify({
-//         type: 'auth',
-//         access_token: haToken,
-//       })
-//     );
-//   } else if (message.type === 'auth_ok') {
-//     console.log('Authentication successful');
-//     const id = Math.floor(Math.random() * 900000) + 100000;
+//   if (event.event_type === 'homeassistant_stop') {
+//     console.log('Home Assistant is stopping...');
+//     // 在这里执行关机逻辑
+//   } else if (event.event_type === 'homeassistant_start') {
+//     console.log('Home Assistant is starting...');
+//     // 在这里执行启动逻辑
+//   }
+// } else if (message.type === 'auth_required') {
+//   console.log('Authentication required');
+//   // 发送认证消息
+//   ws.send(
+//     JSON.stringify({
+//       type: 'auth',
+//       access_token: haToken,
+//     })
+//   );
+// } else if (message.type === 'auth_ok') {
+//   console.log('Authentication successful');
+//   const id = Math.floor(Math.random() * 900000) + 100000;
 //     // 订阅事件
 //     // ws.send(
 //     //   JSON.stringify({
