@@ -1,6 +1,6 @@
 {
     "name": "SONOFF Dongle Quick Flasher For iHost 1111",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "slug": "sonoff_dongle_quick_flasher_for_ihost_111",
     "description": "Just testing flash",
     "uart": true,
@@ -11,6 +11,7 @@
     "arch": [
         "armv7"
     ],
+    "init": false,
     "panel_icon": "mdi:memory-arrow-down",
     "panel_title": "SONOFF Dongle Quick Flasher For iHost",
     "host_network": true,
