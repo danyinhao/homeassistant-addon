@@ -11,6 +11,17 @@
     "arch": [
         "armv7"
     ],
+    "map": [
+        {
+            "type": "share",
+            "read_only": false
+        },
+        {
+            "type": "homeassistant_config",
+            "read_only": false,
+            "path": "/config"
+        }
+    ],
     "init": false,
     "panel_icon": "mdi:memory-arrow-down",
     "panel_title": "SONOFF Dongle Quick Flasher For iHost",
