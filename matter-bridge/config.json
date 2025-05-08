@@ -1,0 +1,49 @@
+{
+  "name": "iHost matter bridge",
+  "version": "1.0.0",
+  "slug": "ihost_matter_bridge",
+  "description": "ihost matter bridge.",
+  "uart": true,
+  "udev": true,
+  "url": "https://github.com/iHost-Open-Source-Project/hassio-ihost-addon/tree/master/hassio-ihost-sonoff-dongle-flasher",
+  "startup": "application",
+  "boot": "auto",
+  "arch": [
+    "armv7"
+  ],
+  "init": false,
+  "panel_icon": "mdi:memory-arrow-down",
+  "panel_title": "iHost matter bridge",
+  "ingress": true,
+  "ingress_port": 3030,
+  "ingress_stream": true,
+  "host_network": true,
+  "homeassistant_api": true,
+  "hassio_role": "admin",
+  "hassio_api": true,
+  "kernel_modules": true,
+  "full_access": true,
+  "apparmor": false,
+  "gpio": true,
+  "privileged": [
+    "SYS_ADMIN",
+    "SYS_MODULE",
+    "SYS_RAWIO",
+    "SYS_RESOURCE"
+  ],
+  "services": [
+    "mqtt:need"
+  ],
+  "map": [
+    {
+      "type": "share",
+      "read_only": false
+    },
+    {
+      "type": "homeassistant_config",
+      "read_only": false,
+      "path": "/config"
+    }
+  ],
+  "image": "ghcr.io/danyinhao/matter-bridge-test-{arch}"
+}
