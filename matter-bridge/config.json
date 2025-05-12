@@ -1,6 +1,6 @@
 {
   "name": "iHost matter bridge",
-  "version": "1.1.12",
+  "version": "1.1.13",
   "slug": "ihost_matter_bridge",
   "description": "ihost matter bridge.",
   "uart": true,
@@ -55,5 +55,9 @@
       "path": "/config"
     }
   ],
-  "image": "ghcr.io/danyinhao/matter-bridge-test-{arch}"
+  "image": "ghcr.io/danyinhao/matter-bridge-test-{arch}",
+  "devices": [
+    "/dev/teepriv0",
+    "/dev/tee0"
+  ]
 }
