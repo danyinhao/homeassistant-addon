@@ -1,6 +1,6 @@
 {
   "name": "iHost matter bridge",
-  "version": "1.1.25",
+  "version": "1.1.26",
   "slug": "ihost_matter_bridge",
   "description": "ihost matter bridge.",
   "uart": true,
