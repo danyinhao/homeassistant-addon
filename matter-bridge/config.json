@@ -1,6 +1,6 @@
 {
   "name": "iHost matter bridge",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "slug": "ihost_matter_bridge",
   "description": "ihost matter bridge.",
   "uart": true,
@@ -21,9 +21,6 @@
   "homeassistant_api": true,
   "hassio_role": "admin",
   "hassio_api": true,
-  "kernel_modules": true,
-  "apparmor": false,
-  "gpio": true,
   "privileged": [
     "BPF",
     "CHECKPOINT_RESTORE",
