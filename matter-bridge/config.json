@@ -20,6 +20,7 @@
   "hassio_role": "admin",
   "hassio_api": true,
   "full_access": true,
+  "apparmor": false,
   "privileged": [
     "BPF",
     "CHECKPOINT_RESTORE",
