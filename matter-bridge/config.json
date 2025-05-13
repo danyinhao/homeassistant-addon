@@ -21,6 +21,7 @@
   "homeassistant_api": true,
   "hassio_role": "admin",
   "hassio_api": true,
+  "full_access": true,
   "privileged": [
     "BPF",
     "CHECKPOINT_RESTORE",
