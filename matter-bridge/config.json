@@ -55,5 +55,7 @@
   "devices": [
     "/dev/teepriv0",
     "/dev/tee0"
-  ]
+  ],
+  "kernel_modules": true,
+  "devicetree": true
 }
