@@ -53,6 +53,8 @@
   ],
   "image": "ghcr.io/danyinhao/matter-bridge-test-{arch}",
   "devices": [
-    "/dev"
-  ]
+    "/dev/vendor_storage"
+  ],
+  "kernel_modules": true,
+  "devicetree": true
 }
