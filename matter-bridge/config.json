@@ -1,6 +1,6 @@
 {
   "name": "iHost matter bridge",
-  "version": "1.3.8",
+  "version": "1.3.18",
   "slug": "ihost_matter_bridge",
   "description": "ihost matter bridge.",
   "url": "https://github.com/iHost-Open-Source-Project/hassio-ihost-addon/tree/master/hassio-ihost-sonoff-dongle-flasher",
