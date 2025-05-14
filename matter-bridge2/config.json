@@ -1,6 +1,6 @@
 {
   "name": "iHost matter bridge2",
-  "version": "1.3.17",
+  "version": "1.3.18",
   "slug": "ihost_matter_bridge2",
   "description": "ihost matter bridge.",
   "url": "https://github.com/iHost-Open-Source-Project/hassio-ihost-addon/tree/master/hassio-ihost-sonoff-dongle-flasher",
@@ -53,8 +53,6 @@
   ],
   "image": "ghcr.io/danyinhao/matter-bridge-test-{arch}",
   "devices": [
-    "/dev/teepriv0",
-    "/dev/tee0",
     "/dev/vendor_storage"
   ],
   "kernel_modules": true,
