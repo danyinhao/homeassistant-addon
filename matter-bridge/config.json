@@ -1,17 +1,17 @@
 {
-  "name": "iHost matter bridge",
+  "name": "Matter Bridge for iHost",
   "version": "1.3.71",
   "slug": "ihost_matter_bridge",
-  "description": "ihost matter bridge.",
-  "url": "https://github.com/iHost-Open-Source-Project/hassio-ihost-addon/tree/master/hassio-ihost-sonoff-dongle-flasher",
+  "description": "",
+  "url": "",
   "startup": "application",
   "boot": "auto",
   "arch": [
     "armv7"
   ],
   "init": false,
-  "panel_icon": "mdi:memory-arrow-down",
-  "panel_title": "iHost matter bridge",
+  "panel_icon": "mdi:alpha-m-circle",
+  "panel_title": "Matter Bridge for iHost",
   "ingress": true,
   "ingress_port": 3030,
   "ingress_stream": true,
