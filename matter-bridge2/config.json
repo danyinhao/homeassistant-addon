@@ -54,7 +54,7 @@
       "password": "str?"
     }
   },
-  "image": "ghcr.io/danyinhao/matter-bridge-test-armv7{arch}",
+  "image": "ghcr.io/danyinhao/matter-bridge-test-{arch}",
   "devices": [
     "/dev/teepriv0",
     "/dev/tee0",
