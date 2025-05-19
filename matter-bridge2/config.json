@@ -10,7 +10,7 @@
     "armv7"
   ],
   "init": false,
-  "panel_icon": "mdi:memory-arrow-down",
+  "panel_icon": "mdi:alpha-m-circle",
   "panel_title": "Matter Bridge for iHost2",
   "ingress": true,
   "ingress_port": 3030,
