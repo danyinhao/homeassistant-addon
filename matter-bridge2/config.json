@@ -49,7 +49,7 @@
     "mqtt": {}
   },
   "schema": {
-    "log_level": "list(Nnoe|Info|Debug)?",
+    "log_level": "list(None|Info|Debug)?",
     "mqtt": {
       "server": "str?",
       "username": "str?",
