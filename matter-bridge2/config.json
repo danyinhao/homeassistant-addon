@@ -45,6 +45,7 @@
     }
   ],
   "options": {
+    "log_level": "Info",
     "mqtt": {}
   },
   "schema": {
