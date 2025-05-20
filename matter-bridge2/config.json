@@ -49,26 +49,7 @@
     "mqtt": {}
   },
   "schema": {
-    "log_level": {
-      "name": "Log Level",
-      "description": "Select the log level for the add-on",
-      "type": "select",
-      "options": [
-        {
-          "value": 4,
-          "label": "None"
-        },
-        {
-          "value": 2,
-          "label": "Info"
-        },
-        {
-          "value": 1,
-          "label": "Debug"
-        }
-      ],
-      "default": 2
-    },
+    "log_level": "int",
     "mqtt": {
       "server": "str?",
       "username": "str?",
