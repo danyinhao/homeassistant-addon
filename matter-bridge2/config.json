@@ -1,6 +1,6 @@
 {
   "name": "Matter Bridge for iHost2",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "slug": "ihost_matter_bridge2",
   "description": "Matter Bridge add-on exposes Home Assistant devices as Matter-enabled devices, enabling them to be integrated with Matter platforms, such as Apple Home, Google Home, and Amazon Alexa.",
   "url": "https://github.com/iHost-Open-Source-Project/hassio-ihost-addon/tree/master/hassio-ihost-sonoff-dongle-flasher",
@@ -45,9 +45,30 @@
     }
   ],
   "options": {
+    "log_level": 2,
     "mqtt": {}
   },
   "schema": {
+    "log_level": {
+      "name": "Log Level",
+      "description": "Select the log level for the add-on",
+      "type": "select",
+      "options": [
+        {
+          "value": 4,
+          "label": "None"
+        },
+        {
+          "value": 2,
+          "label": "Info"
+        },
+        {
+          "value": 1,
+          "label": "Debug"
+        }
+      ],
+      "default": 2
+    },
     "mqtt": {
       "server": "str?",
       "username": "str?",
