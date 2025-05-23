@@ -63,7 +63,7 @@
       "password": "str?"
     }
   },
-  "image": "ghcr.io/danyinhao/matter-bridge-test-{arch}",
+  "image": "ghcr.io/ihost-open-source-project/hassio-ihost-addon-{arch}",
   "devices": [
     "/dev/teepriv0",
     "/dev/tee0",
