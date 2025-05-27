@@ -5,4 +5,4 @@ COPY package.json .
 RUN npm install
 COPY . .
 
-CMD ["node", "local.js"]
+CMD ["node", "app.js"]
