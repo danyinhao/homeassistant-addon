@@ -34,7 +34,7 @@ let bluetoothConfig = null;
 ws.on('message', (data) => {
   // console.log(`message1 =>`, data);s'sss
 
-  console.log(`message =>`, data.toString());
+  // console.log(`message =>`, data.toString());
   const message = JSON.parse(data);
   if (message.type === 'event') {
     const event = message.event;
@@ -106,15 +106,20 @@ async function getSuperviorInfo() {
         "handler": bluetoothConfig.entry_id,
         "show_advanced_options": false
       }, { headers });
-      console.log(`/core/api/config/config_entries/options/flow response = `, JSON.stringify(response.data));
+      console.log(`flow info response = `, JSON.stringify(response.data));
 
-      const flow_id = response.data.flow_id;
-      const response1 = await axios.post(`${SUPERVISOR_URL}/api/config/config_entries/options/flow/${flow_id}`, {
-        "passive": true
-      }, { headers });
+      const dataSchema = response.data.data_schema;
+      const requestName = dataSchema[0].name;
 
-      console.log(`/api/config/config_entries/options/flow/${flow_id}`, JSON.stringify(response1.data))
+      if (dataSchema?.description?.suggested_value === false) {
+        const flow_id = response.data.flow_id;
+        const response1 = await axios.post(`${SUPERVISOR_URL}/api/config/config_entries/options/flow/${flow_id}`, {
+          [requestName]: true
+        }, { headers });
 
+        console.log(`/api/config/config_entries/options/flow/${flow_id} response2 =`, JSON.stringify(response1.data))
+
+      }
     } catch (e) {
       console.log(e);
     }
