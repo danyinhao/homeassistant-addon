@@ -10,140 +10,69 @@ app.use(express.json());
 const wsUrl = 'ws://supervisor/core/api/websocket';
 const haToken = process.env.SUPERVISOR_TOKEN;
 
-const SUPERVISOR_URL = "http://supervisor";
+const SUPERVISOR_URL = "http://supervisor/core";
 
-// console.log(`wsUrl = `, wsUrl);
-// console.log(`haToken = `, haToken);
+console.log(`wsUrl = `, wsUrl);
+console.log(`haToken = `, haToken);
 
 // // 创建 WebSocket 连接
-// const ws = new WebSocket(wsUrl, {
-//   autoPong: true,
-//   headers: {
-//     Authorization: `Bearer ${haToken}`,
-//     "Content-Type": "application/json",
-//   }
-// });
+const ws = new WebSocket(wsUrl, {
+  autoPong: true,
+  headers: {
+    Authorization: `Bearer ${haToken}`,
+    "Content-Type": "application/json",
+  }
+});
 
 // // 监听 WebSocket 连接打开事件
-// ws.on('open', () => {
-//   console.log('WebSocket connection opened');
-// });
+ws.on('open', () => {
+  console.log('WebSocket connection opened');
+});
 
+let bluetoothConfig = null;
 // // 监听 WebSocket 消息事件
-// ws.on('message', (data) => {
-//   // console.log(`message1 =>`, data);s'sss
+ws.on('message', (data) => {
+  // console.log(`message1 =>`, data);s'sss
 
-//   console.log(`message =>`, data.toString());
-//   const message = JSON.parse(data);
-// if (message.type === 'event') {
-//   const event = message.event;
+  console.log(`message =>`, data.toString());
+  const message = JSON.parse(data);
+  if (message.type === 'event') {
+    const event = message.event;
+  } else if (message.type === 'auth_required') {
+    console.log('Authentication required');
+    // 发送认证消息
+    ws.send(
+      JSON.stringify({
+        type: 'auth',
+        access_token: haToken,
+      })
+    );
+  } else if (message.type === 'auth_ok') {
+    ws.send(
+      JSON.stringify({ "type": "config_entries/get", "domain": "bluetooth", "id": 1 })
+    );
 
-//   if (event.event_type === 'homeassistant_stop') {
-//     console.log('Home Assistant is stopping...');
-//     // 在这里执行关机逻辑
-//   } else if (event.event_type === 'homeassistant_start') {
-//     console.log('Home Assistant is starting...');
-//     // 在这里执行启动逻辑
-//   }
-// } else if (message.type === 'auth_required') {
-//   console.log('Authentication required');
-//   // 发送认证消息
-//   ws.send(
-//     JSON.stringify({
-//       type: 'auth',
-//       access_token: haToken,
-//     })
-//   );
-// } else if (message.type === 'auth_ok') {
-//   console.log('Authentication successful');
-//   const id = Math.floor(Math.random() * 900000) + 100000;
-//     // 订阅事件
-//     // ws.send(
-//     //   JSON.stringify({
-//     //     id, // 请求 ID
-//     //     type: 'subscribe_trigger',
-//     //     // event_type: 'shutdown', // 监听的事件类型
-//     //     trigger: {
-//     //       "platform": "homeassistant",
-//     //       "event": "shutdown"
-//     //     }
-//     //   })
-//     // );
+    setInterval(() => {
+      ws.ping();
+    }, 5000);
 
-//     // ws.send(
-//     //   JSON.stringify({
-//     //     id: id + 1, // 请求 ID
-//     //     type: 'subscribe_events',
-//     //     event_type: 'EVENT_HOMEASSISTANT_STOP', // 监听的事件类型
-//     //   })
-//     // );
+  } else if (message.id === 1) {
+    bluetoothConfig = message;
+    console.log(`bluetooth = `, data.toString());
+  } else {
+    console.log('Received message:', data.toString());
+  }
+});
 
-//     // ws.send(
-//     //   JSON.stringify({
-//     //     id: id + 2, // 请求 ID
-//     //     type: 'subscribe_events',
-//     //     event_type: 'homeassistant_started', // 监听的事件类型
-//     //   })
-//     // );
+// 监听 WebSocket 错误事件
+ws.on('error', (error) => {
+  console.error('WebSocket error:', error);
+});
 
-//     // ws.send(
-//     //   JSON.stringify({
-//     //     id: id + 3, // 请求 ID
-//     //     type: 'subscribe_events',
-//     //     event_type: 'homeassistant_start', // 监听的事件类型
-//     //   })
-//     // );
-
-//     // ws.send(
-//     //   JSON.stringify({
-//     //     id: id + 4, // 请求 ID
-//     //     type: 'subscribe_events',
-//     //     event_type: 'homeassistant_stop', // 监听的事件类型
-//     //   })
-//     // );
-
-//     // ws.send(
-//     //   JSON.stringify({
-//     //     id: id + 5, // 请求 ID
-//     //     type: 'subscribe_events',
-//     //     event_type: 'homeassistant_final_write', // 监听的事件类型
-//     //   })
-//     // );
-
-//     // ws.send(
-//     //   JSON.stringify({
-//     //     id: id + 6, // 请求 ID
-//     //     type: 'subscribe_events',
-//     //     event_type: 'homeassistant_close', // 监听的事件类型
-//     //   })
-//     // );
-
-//     setInterval(() => {
-//       ws.ping();
-//     }, 5000);
-
-//     // ws.send(
-//     //     JSON.stringify({
-//     // id: 2, // 请求 ID
-//     // type: 'subscribe_events',
-//     // event_type: 'homeassistant_start', // 监听的事件类型
-//     //     })
-//     // );
-
-//   } else {
-//     console.log('Received message:', message);
-//   }
-// });
-
-// // 监听 WebSocket 错误事件
-// ws.on('error', (error) => {
-//   console.error('WebSocket error:', error);
-// });
-
-// // 监听 WebSocket 关闭事件
-// ws.on('close', () => {
-//   console.log('WebSocket connection closed');
-// });
+// 监听 WebSocket 关闭事件
+ws.on('close', () => {
+  console.log('WebSocket connection closed');
+});
 
 process.on("SIGINT", async (singals) => {
   // await getSuperviorInfo();
@@ -171,12 +100,26 @@ async function getSuperviorInfo() {
 }
 
 (async () => {
-  // try {
-  //   const response = await axios.get(`${SUPERVISOR_URL}/core/api/states`, { headers });
-  //   console.log(`/core/api/states response = `, JSON.stringify(response.data));
-  // } catch (e) {
-  //   console.log(e);
-  // }
+  setTimeout(async () => {
+    try {
+      const response = await axios.post(`${SUPERVISOR_URL}/api/config/config_entries/options/flow`, {
+        "handler": "01JVVN0BXY6Y03NBTKMSFYRSVH",
+        "show_advanced_options": false
+      }, { headers });
+      console.log(`/core/api/config/config_entries/options/flow response = `, JSON.stringify(response.data));
+
+      const flow_id = response.data.flow_id;
+      const response1 = await axios.post(`${SUPERVISOR_URL}/api/config/config_entries/options/flow/${flow_id}`, {
+        "passive": true
+      }, { headers });
+
+      console.log(`/api/config/config_entries/options/flow/${flow_id}`, JSON.stringify(response1.data))
+
+    } catch (e) {
+      console.log(e);
+    }
+  }, 2000);
+
 
   // try {
   //   const response = await axios.get(`${SUPERVISOR_URL}/core/info`, { headers });
@@ -233,12 +176,12 @@ async function getSuperviorInfo() {
   //   console.log(e?.response?.status);
   // }
 
-  try {
-    const response = await axios.get(`${SUPERVISOR_URL}/api/services`, { headers });
-    console.log(`/services services = `, JSON.stringify(response.data));
-  } catch (e) {
-    console.log(e?.response?.status);
-  }
+  // try {
+  //   const response = await axios.get(`${SUPERVISOR_URL}/api/services`, { headers });
+  //   console.log(`/services services = `, JSON.stringify(response.data));
+  // } catch (e) {
+  //   console.log(e?.response?.status);
+  // }
 
   // try {
   //   const response = await axios.get(`${SUPERVISOR_URL}/core/api/events`, { headers });
@@ -248,25 +191,25 @@ async function getSuperviorInfo() {
   // }
 
   // HA addon 环境停止zigee2mqtt addon demo
-  try {
-    const response = await axios.get(`${SUPERVISOR_URL}/addons`, { headers });
-    // console.log(`/addons zigbee2mqtt = `, JSON.stringify(response.data));
+  // try {
+  //   const response = await axios.get(`${SUPERVISOR_URL}/addons`, { headers });
+  //   // console.log(`/addons zigbee2mqtt = `, JSON.stringify(response.data));
 
-    const addons = response.data.data.addons;
-    const zigbee2mqtt = addons.find(item => item.slug.includes("zigbee2mqtt"));
-    console.log(`zigbee2mqtt`, zigbee2mqtt);
+  //   const addons = response.data.data.addons;
+  //   const zigbee2mqtt = addons.find(item => item.slug.includes("zigbee2mqtt"));
+  //   console.log(`zigbee2mqtt`, zigbee2mqtt);
 
-    const state = await axios.get(`${SUPERVISOR_URL}/addons/${zigbee2mqtt.slug}/info`, { headers });
-    console.log(`info 1`, JSON.stringify(state.data));
+  //   const state = await axios.get(`${SUPERVISOR_URL}/addons/${zigbee2mqtt.slug}/info`, { headers });
+  //   console.log(`info 1`, JSON.stringify(state.data));
 
-    if (state.data.state != "started") {
-      const stopRes = await axios.post(`${SUPERVISOR_URL}/addons/${zigbee2mqtt.slug}/stop`, {}, { headers });
-      console.log(`/stop`, JSON.stringify(stopRes.data));
-      const state2 = await axios.get(`${SUPERVISOR_URL}/addons/${zigbee2mqtt.slug}/info`, { headers });
-      console.log(`info 2`, JSON.stringify(state2.data));
-    }
+  //   if (state.data.state != "started") {
+  //     const stopRes = await axios.post(`${SUPERVISOR_URL}/addons/${zigbee2mqtt.slug}/stop`, {}, { headers });
+  //     console.log(`/stop`, JSON.stringify(stopRes.data));
+  //     const state2 = await axios.get(`${SUPERVISOR_URL}/addons/${zigbee2mqtt.slug}/info`, { headers });
+  //     console.log(`info 2`, JSON.stringify(state2.data));
+  //   }
 
-  } catch (e) {
-    console.log(e);
-  }
+  // } catch (e) {
+  //   console.log(e);
+  // }
 })();
