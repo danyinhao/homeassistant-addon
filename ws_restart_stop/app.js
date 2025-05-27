@@ -108,8 +108,8 @@ async function getSuperviorInfo() {
       }, { headers });
       console.log(`flow info response = `, JSON.stringify(response.data));
 
-      const dataSchema = response.data.data_schema;
-      const requestName = dataSchema[0].name;
+      const dataSchema = response.data.data_schema[0];
+      const requestName = dataSchema.name;
 
       if (dataSchema?.description?.suggested_value === false) {
         const flow_id = response.data.flow_id;
