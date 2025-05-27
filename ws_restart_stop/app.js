@@ -57,7 +57,7 @@ ws.on('message', (data) => {
     }, 5000);
 
   } else if (message.id === 1) {
-    bluetoothConfig = message;
+    bluetoothConfig = message.result[0];
     console.log(`bluetooth = `, data.toString());
   } else {
     console.log('Received message:', data.toString());
@@ -103,7 +103,7 @@ async function getSuperviorInfo() {
   setTimeout(async () => {
     try {
       const response = await axios.post(`${SUPERVISOR_URL}/api/config/config_entries/options/flow`, {
-        "handler": "01JVVN0BXY6Y03NBTKMSFYRSVH",
+        "handler": bluetoothConfig.entry_id,
         "show_advanced_options": false
       }, { headers });
       console.log(`/core/api/config/config_entries/options/flow response = `, JSON.stringify(response.data));
