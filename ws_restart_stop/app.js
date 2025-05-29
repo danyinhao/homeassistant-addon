@@ -17,11 +17,7 @@ console.log(`haToken = `, haToken);
 
 // // 创建 WebSocket 连接
 const ws = new WebSocket(wsUrl, {
-  autoPong: true,
-  headers: {
-    Authorization: `Bearer ${haToken}`,
-    "Content-Type": "application/json",
-  }
+  autoPong: true
 });
 
 // // 监听 WebSocket 连接打开事件
