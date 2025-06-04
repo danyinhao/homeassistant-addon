@@ -1,8 +1,8 @@
 {
-  "name": "Matter Bridge for iHost2",
-  "version": "1.5.26",
-  "slug": "ihost_matter_bridge2",
-  "description": "Matter Bridge add-on exposes Home Assistant devices as Matter-enabled devices, enabling them to be integrated with Matter platforms, such as Apple Home, Google Home, and Amazon Alexa.",
+  "name": "remote test",
+  "version": "1.0.0",
+  "slug": "ihost_remote_test",
+  "description": "",
   "url": "https://github.com/iHost-Open-Source-Project/hassio-ihost-addon/tree/master/hassio-ihost-sonoff-dongle-flasher",
   "startup": "application",
   "boot": "auto",
@@ -13,7 +13,7 @@
   "panel_icon": "mdi:alpha-m-circle",
   "panel_title": "Matter Bridge for iHost2",
   "ingress": true,
-  "ingress_port": 3030,
+  "ingress_port": 3031,
   "ingress_stream": true,
   "host_network": true,
   "homeassistant_api": true,
@@ -56,12 +56,5 @@
       "password": "str?"
     }
   },
-  "image": "ghcr.io/danyinhao/matter-bridge-test-{arch}",
-  "devices": [
-    "/dev/teepriv0",
-    "/dev/tee0",
-    "/dev/vendor_storage"
-  ],
-  "kernel_modules": true,
-  "devicetree": true
+  "image": "ghcr.io/danyinhao/remote-test-{arch}"
 }
