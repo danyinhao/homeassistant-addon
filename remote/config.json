@@ -1,6 +1,6 @@
 {
   "name": "remote test",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "slug": "ihost_remote_test",
   "description": "",
   "url": "https://github.com/iHost-Open-Source-Project/hassio-ihost-addon/tree/master/hassio-ihost-sonoff-dongle-flasher",
