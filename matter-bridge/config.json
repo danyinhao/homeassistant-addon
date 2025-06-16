@@ -40,7 +40,7 @@
     {
       "type": "homeassistant_config",
       "read_only": false,
-      "path": "/config"
+      "path": "/ihost-matter-bridge-old-data"
     }
   ],
   "options": {
