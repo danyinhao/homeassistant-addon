@@ -33,7 +33,7 @@
   ],
   "map": [
     {
-      "type": "data",
+      "type": "addon_config",
       "read_only": false,
       "path": "/data"
     },
