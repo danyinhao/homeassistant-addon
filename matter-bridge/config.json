@@ -1,6 +1,6 @@
 {
   "name": "Matter Bridge for iHost test",
-  "version": "1.6.25",
+  "version": "1.6.26",
   "slug": "ihost_matter_bridge_test",
   "description": "Matter Bridge add-on exposes Home Assistant devices as Matter-enabled devices, enabling them to be integrated with Matter platforms, such as Apple Home, Google Home, and Amazon Alexa.",
   "url": "https://github.com/iHost-Open-Source-Project/hassio-ihost-addon/tree/master/hassio-ihost-matter-bridge-addon",
@@ -35,7 +35,7 @@
     {
       "type": "addon_config",
       "read_only": false,
-      "path": "/data"
+      "path": "/config"
     },
     {
       "type": "homeassistant_config",
