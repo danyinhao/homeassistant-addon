@@ -60,9 +60,5 @@
     "/dev/teepriv0",
     "/dev/tee0",
     "/dev/vendor_storage"
-  ],
-  "full_access": true,
-  "apparmor": false,
-  "kernel_modules": true,
-  "devicetree": true
+  ]
 }
