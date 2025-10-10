@@ -28,7 +28,7 @@
         }
     ],
     "options": {
-        "data_path": "/config/iHost-Hardware-Control",
+        "data_path": "/config/hass-test",
         "mqtt": {}
     },
     "schema": {
