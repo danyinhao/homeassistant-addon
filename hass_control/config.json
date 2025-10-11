@@ -27,9 +27,11 @@
         }
     ],
     "options": {
+        "data_path": "/config/hass-test",
         "mqtt": {}
     },
     "schema": {
+        "data_path": "str",
         "mqtt": {
             "server": "str?",
             "username": "str?",
