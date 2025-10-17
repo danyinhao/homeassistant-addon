@@ -44,5 +44,6 @@
     "devices": [
         "/dev/ttyS3"
     ],
-    "homeassistant": "2025.9.2"
+    "homeassistant": "2025.9.2",
+    "homeassistant_api": true
 }
